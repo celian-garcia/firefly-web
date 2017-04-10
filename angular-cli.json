@@ -1,0 +1,46 @@
+{
+  "project": {
+    "version": "0.0.0",
+    "name": "firefly-front"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "main": "main.ts",
+      "tsconfig": "tsconfig.app.json",
+      "mobile": false,
+      "assets": [
+        "assets"
+      ],
+      "index": "index.html"
+    }
+  ],
+  "addons": [],
+  "packages": [],
+  "e2e": {
+    "protractor": {
+      "config": "protractor.conf.js"
+    }
+  },
+  "test": {
+    "karma": {
+      "config": "karma.conf.js"
+    }
+  },
+  "defaults": {
+    "prefix": "app",
+    "sourceDir": "src",
+    "styleExt": "css",
+    "prefixInterfaces": false,
+    "lazyRoutePrefix": "+"
+  },
+  "scripts": [],
+  "styles": [],
+  "assets": "src/assets",
+  "environments": {
+    "source": "src/environments/environment.ts",
+    "dev": "src/environments/environment.ts",
+    "prod": "src/environments/environment.prod.ts"
+  }
+}
