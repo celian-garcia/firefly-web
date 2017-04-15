@@ -20,6 +20,8 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "angular2-modal": "^2.0.3",
+    "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "portfinder": "^1.0.13",
     "reflect-metadata": "^0.1.10",
