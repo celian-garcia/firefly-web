@@ -4,6 +4,7 @@ import {ApiFireflyModule} from 'app/api-firefly/api-firefly.module';
 import {TasksOverviewComponent} from './tasks-overview.component';
 import {ModalModule} from 'angular2-modal/esm';
 import {BootstrapModalModule} from 'angular2-modal/plugins/bootstrap';
+import {TaskLineComponent} from './task-line.component';
 
 @NgModule({
     imports: [
@@ -12,7 +13,7 @@ import {BootstrapModalModule} from 'angular2-modal/plugins/bootstrap';
         ModalModule,
         BootstrapModalModule,
     ],
-    declarations: [TasksOverviewComponent],
+    declarations: [TasksOverviewComponent, TaskLineComponent],
     exports: [TasksOverviewComponent]
 })
 export class TasksOverviewModule {

@@ -3,4 +3,6 @@
  */
 export class Task {
     name: string;
+    userName: string;
+    state: string;
 }

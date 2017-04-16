@@ -1,4 +1,6 @@
 <button (click)="onClick()">Créer une nouvelle tâche</button>
 <ul>
-    <li *ngFor="let task of tasks">{{task.title}}</li>
+    <li *ngFor="let task of tasks">
+        <app-task-line [task]="task"></app-task-line>
+    </li>
 </ul>
