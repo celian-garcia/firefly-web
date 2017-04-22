@@ -1,0 +1,17 @@
+.img-title {
+    height: 70%;
+    position: relative;
+    top: 50%;
+    left: 100px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.toolbar {
+    height: 60px;
+    background-color: #303030;
+    box-shadow: 0 0 20px #000;
+    -webkit-box-shadow: 0 0 20px #000;
+    -moz-box-shadow: 0 0 20px #000;
+}

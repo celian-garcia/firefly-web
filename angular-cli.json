@@ -11,7 +11,12 @@
       "tsconfig": "tsconfig.app.json",
       "mobile": false,
       "assets": [
-        "assets"
+        "assets",
+        {
+          "glob": "**/*",
+          "input": "app/toolbar/assets/",
+          "output": "./assets/"
+        }
       ],
       "index": "index.html"
     }

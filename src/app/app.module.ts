@@ -7,6 +7,7 @@ import {ModalModule} from 'angular2-modal';
 
 import {AppComponent} from './app.component';
 import {TasksOverviewModule} from './tasks-overview/tasks-overview.module';
+import {ToolbarModule} from 'app/toolbar/toolbar.module';
 
 @NgModule({
     declarations: [
@@ -17,10 +18,10 @@ import {TasksOverviewModule} from './tasks-overview/tasks-overview.module';
         FormsModule,
         HttpModule,
         TasksOverviewModule,
+        ToolbarModule,
         ModalModule.forRoot(),
         BootstrapModalModule
     ],
-    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {
