@@ -1,7 +1,7 @@
 <div class="task-card">
     <div class="tc-content">
         <div class="tc-title tc-text-title">
-            {{task.name}} -- {{task.state}}
+            {{task.name | capitalize}} -- {{task.state}}
         </div>
         <p class="tc-desc">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -14,5 +14,6 @@
             Créé par {{task.userName}}
         </div>
     </div>
+    <div class="tc-shadow"></div>
     <div class="tc-bottom"></div>
 </div>
