@@ -6,6 +6,7 @@ import {ModalModule} from 'angular2-modal/esm';
 import {BootstrapModalModule} from 'angular2-modal/plugins/bootstrap';
 import {TaskLineComponent} from './task-line.component';
 import {UtilsModule} from '../utils/utils.module';
+import { TaskModalComponent } from './task-modal.component';
 
 @NgModule({
     imports: [
@@ -15,8 +16,9 @@ import {UtilsModule} from '../utils/utils.module';
         BootstrapModalModule,
         UtilsModule
     ],
-    declarations: [TasksOverviewComponent, TaskLineComponent],
-    exports: [TasksOverviewComponent]
+    declarations: [TasksOverviewComponent, TaskLineComponent, TaskModalComponent],
+    exports: [TasksOverviewComponent],
+    entryComponents: [TaskModalComponent]
 })
 export class TasksOverviewModule {
 }

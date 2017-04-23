@@ -9,14 +9,15 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class TaskService {
 
-    private taskUrl = 'api/v1/tasks';  // URL to web API
+    private tasksUrl = 'api/v1/tasks';  // URL to web API
+    private namesUrl = 'api/v1/names';  // URL to web API
+    private categoriesUrl = 'api/v1/categories';  // URL to web API
 
     private static extractData(res: Response) {
-        console.log(res.json() || {})
         return res.json() || {};
     }
 
-    private static handleError(error: Response | any) {
+    public static handleError(error: Response | any) {
         // In a real world app, you might use a remote logging infrastructure
         let errMsg: string;
         if (error instanceof Response) {
@@ -34,7 +35,19 @@ export class TaskService {
     }
 
     getTasks(): Observable<Task[]> {
-        return this.http.get(this.taskUrl)
+        return this.http.get(this.tasksUrl)
+            .map(TaskService.extractData)
+            .catch(TaskService.handleError);
+    }
+
+    getNames(): Observable<string[]> {
+        return this.http.get(this.namesUrl)
+            .map(TaskService.extractData)
+            .catch(TaskService.handleError);
+    }
+
+    getCategories(): Observable<string[]> {
+        return this.http.get(this.categoriesUrl)
             .map(TaskService.extractData)
             .catch(TaskService.handleError);
     }

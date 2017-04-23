@@ -2,7 +2,9 @@ import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {TaskService} from '../api-firefly/task.service';
 import {Task} from '../api-firefly/data/Task';
 import {Modal} from 'angular2-modal/plugins/bootstrap/modal';
-import {Overlay} from 'angular2-modal';
+import {overlayConfigFactory} from 'angular2-modal';
+import {TaskModalContext, TaskModalComponent} from './task-modal.component';
+import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
 
 @Component({
     selector: 'app-tasks-overview',
@@ -15,8 +17,8 @@ export class TasksOverviewComponent implements OnInit {
     errorMessage: string;
     tasks: Task[];
 
-    constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private taskService: TaskService) {
-        overlay.defaultViewContainer = vcRef;
+    constructor(vcRef: ViewContainerRef, public modal: Modal, private taskService: TaskService) {
+        this.modal.overlay.defaultViewContainer = vcRef;
     }
 
     ngOnInit() {
@@ -31,14 +33,7 @@ export class TasksOverviewComponent implements OnInit {
     }
 
     onClick() {
-        this.modal.alert()
-            .size('lg')
-            .showClose(true)
-            .title('Modal title')
-            .body(`
-                <h4>Blabla </h4>
-            `)
-            .open();
+        return this.modal.open(TaskModalComponent, overlayConfigFactory({num1: 2, num2: 3}, BSModalContext));
     }
 
     // addTask(name: string) {
