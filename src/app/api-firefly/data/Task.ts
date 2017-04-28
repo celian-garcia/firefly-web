@@ -2,9 +2,12 @@
  * Created by celia on 15/04/2017.
  */
 export class Task {
-    title: string;
+    id: string;
     name: string;
-    userName: string;
+    description: string;
+    type: string;
+    module: string;
+    user_name: string;
+    date: string;
     state: string;
-    category: string;
 }

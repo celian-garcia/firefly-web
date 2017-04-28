@@ -6,16 +6,16 @@
     overflow:  hidden;
     background-color: #303030;
     max-height: 200px;
-    width: 344px;
+    width: 30%;
     -webkit-box-shadow: 2px 1px 5px #101010;
     -moz-box-shadow: 2px 1px 5px #101010;
     box-shadow: 2px 1px 5px #101010;
 }
 
 .tc-desc {
+    margin: 10px;
     display:inline-block;
-    width: 100%;
-    white-space: nowrap;
+    height: 60px;
     overflow:hidden !important;
     text-overflow: ellipsis;
 }
