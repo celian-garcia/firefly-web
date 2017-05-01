@@ -1,12 +1,9 @@
 .task-card {
-    float: left;
-    margin: 10px;
-    position: relative;
     border-radius: 2px;
-    overflow:  hidden;
+    overflow: hidden;
     background-color: #303030;
     max-height: 200px;
-    width: 30%;
+    width: 100%;
     -webkit-box-shadow: 2px 1px 5px #101010;
     -moz-box-shadow: 2px 1px 5px #101010;
     box-shadow: 2px 1px 5px #101010;
@@ -14,9 +11,9 @@
 
 .tc-desc {
     margin: 10px;
-    display:inline-block;
+    display: inline-block;
     height: 60px;
-    overflow:hidden !important;
+    overflow: hidden !important;
     text-overflow: ellipsis;
 }
 
@@ -31,22 +28,30 @@
     -moz-box-shadow: 0 0 1px 2px white;
     box-shadow: 0 0 1px 2px white;
 }
+
 .tc-shadow {
-    box-shadow: 0px 10px 60px 40px #444;
+    box-shadow: 0 10px 60px 40px #444;
 }
 
-.tc-text-title {
+.tc-header {
     font-size: 20px;
     font-style: normal;
     font-variant: normal;
     font-weight: 500;
     line-height: 24px;
-}
 
-.tc-title {
-    margin: 0px;
+    margin: 0;
     border-bottom: 2px solid #3b3b3b;
 }
+.tc-number {
+    float: right;
+    margin-left: 10px;
+}
+.tc-state {
+    width: 20px;
+    float: right;
+}
+
 
 .tc-footer {
     text-align: right;

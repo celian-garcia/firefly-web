@@ -1,7 +1,9 @@
 <div class="task-card">
     <div class="tc-content">
-        <div class="tc-title tc-text-title">
-            {{task.name | capitalize}} #{{task.id}} -- {{task.state}}
+        <div class="tc-header">
+            <span class="tc-title">{{task.name | capitalize}} </span>
+            <span class="tc-number">#{{task.id}}</span>
+            <img class="tc-state" *ngIf="states[task.state]" [src]="states[task.state]">
         </div>
         <p class="tc-desc">
             {{task.description}}
