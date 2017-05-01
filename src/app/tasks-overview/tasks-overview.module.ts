@@ -6,7 +6,7 @@ import {ModalModule} from 'angular2-modal/esm';
 import {BootstrapModalModule} from 'angular2-modal/plugins/bootstrap';
 import {TaskLineComponent} from './task-line.component';
 import {UtilsModule} from '../utils/utils.module';
-import { TaskModalComponent } from './task-modal.component';
+import {TaskModalComponent} from './task-modal.component';
 
 @NgModule({
     imports: [
