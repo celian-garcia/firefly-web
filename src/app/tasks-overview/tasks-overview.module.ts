@@ -7,6 +7,7 @@ import {BootstrapModalModule} from 'angular2-modal/plugins/bootstrap';
 import {TaskLineComponent} from './task-line.component';
 import {UtilsModule} from '../utils/utils.module';
 import {TaskModalComponent} from './task-modal.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -14,7 +15,8 @@ import {TaskModalComponent} from './task-modal.component';
         ApiFireflyModule,
         ModalModule,
         BootstrapModalModule,
-        UtilsModule
+        UtilsModule,
+        FormsModule
     ],
     declarations: [TasksOverviewComponent, TaskLineComponent, TaskModalComponent],
     exports: [TasksOverviewComponent],

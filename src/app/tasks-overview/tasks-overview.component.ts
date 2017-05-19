@@ -37,13 +37,7 @@ export class TasksOverviewComponent implements OnInit {
     }
 
     // addTask(name: string) {
-    //     if (!name) {
-    //         return;
-    //     }
-    //     // this.taskService.create(name)
-    //     //     .subscribe(
-    //     //         task  => this.tasks.push(task),
-    //     //         error =>  this.errorMessage = <any>error);
+    //
     // }
 
 }

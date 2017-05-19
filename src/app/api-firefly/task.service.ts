@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Http, RequestOptions, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Task} from './data/Task';
 
@@ -9,9 +9,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class TaskService {
 
-    private tasksUrl = 'api/v1/tasks';  // URL to web API
-    private namesUrl = 'api/v1/names';  // URL to web API
-    private categoriesUrl = 'api/v1/categories';  // URL to web API
+    private static TASKS_URL = 'api/v1/tasks';  // URL to web API
+    private static NAMES_URL = 'api/v1/names';  // URL to web API
+    private static CATEGORIES_URL = 'api/v1/categories';  // URL to web API
 
     private static extractData(res: Response) {
         return res.json() || {};
@@ -35,19 +35,27 @@ export class TaskService {
     }
 
     getTasks(): Observable<Task[]> {
-        return this.http.get(this.tasksUrl)
+        return this.http.get(TaskService.TASKS_URL)
+            .map(TaskService.extractData)
+            .catch(TaskService.handleError);
+    }
+
+    createTask(task: Task): Observable<Task> {
+        const headers = new Headers({'Content-Type': 'application/json'});
+        const options = new RequestOptions({headers: headers});
+        return this.http.post(TaskService.TASKS_URL, JSON.stringify(task), options)
             .map(TaskService.extractData)
             .catch(TaskService.handleError);
     }
 
     getNames(): Observable<string[]> {
-        return this.http.get(this.namesUrl)
+        return this.http.get(TaskService.NAMES_URL)
             .map(TaskService.extractData)
             .catch(TaskService.handleError);
     }
 
     getCategories(): Observable<string[]> {
-        return this.http.get(this.categoriesUrl)
+        return this.http.get(TaskService.CATEGORIES_URL)
             .map(TaskService.extractData)
             .catch(TaskService.handleError);
     }
