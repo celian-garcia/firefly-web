@@ -1,21 +1,22 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {DialogRef, ModalComponent, CloseGuard} from 'angular2-modal';
 import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
 import {Task} from 'app/api-firefly/data/Task';
 import {Module} from '../api-firefly/data/Module';
 import {TaskService} from '../api-firefly/task.service';
+import {ModuleService} from 'app/api-firefly/module.service';
 
 export class TaskModalContext extends BSModalContext {
 }
 
 @Component({
     selector: 'app-task-modal',
-    providers: [TaskService],
+    providers: [TaskService, ModuleService],
     styleUrls: ['./task-modal.component.css'],
     templateUrl: './task-modal.component.html'
 })
-export class TaskModalComponent implements CloseGuard, ModalComponent<TaskModalContext> {
+export class TaskModalComponent implements OnInit, CloseGuard, ModalComponent<TaskModalContext> {
     context: TaskModalContext;
     task: Task;
     selected_task_type: string;
@@ -27,28 +28,22 @@ export class TaskModalComponent implements CloseGuard, ModalComponent<TaskModalC
         return true;
     }
 
-    constructor(public dialog: DialogRef<TaskModalContext>, private taskService: TaskService) {
+    constructor(public dialog: DialogRef<TaskModalContext>, private taskService: TaskService, private moduleService: ModuleService) {
         this.context = dialog.context;
         this.task = new Task();
         this.task.name = 'Default title';
         this.task.description = 'Default description';
-        this.modules = [
-            {
-                'name': 'Fly Library',
-                'types': [
-                    {name: 'Reconstuction 3D', code: 'r3d'},
-                    {name: 'Population 3D', code: 'p3d'}
-                ]
-            },
-            {
-                'name': 'OpenCV Library',
-                'types': [
-                    {name: 'Action 1', code: 'action1'},
-                    {name: 'Action 2', code: 'action2'}
-                ]
-            }];
-        this.selected_task_type = 'r3d';
         dialog.setCloseGuard(this);
+    }
+
+    ngOnInit() {
+        this.moduleService.getModules().subscribe(
+            data => {
+                console.log(data);
+                this.modules = data;
+            },
+            error => this.errorMessage = <any>error
+            );
     }
 
     onCancel() {
@@ -62,7 +57,10 @@ export class TaskModalComponent implements CloseGuard, ModalComponent<TaskModalC
         this.taskService.createTask(this.task)
             .subscribe(
                 task => console.log(task),
-                error =>  this.errorMessage = <any>error);
+                error => {
+                    this.errorMessage = <any>error;
+                    console.log(this.errorMessage);
+                });
         this.dialog.dismiss();
     }
 

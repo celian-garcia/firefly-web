@@ -9,5 +9,5 @@ export class Task {
     module: string;
     user_name: string;
     date: string;
-    state: string;
+    state: number;
 }

@@ -5,10 +5,11 @@ import {Modal} from 'angular2-modal/plugins/bootstrap/modal';
 import {overlayConfigFactory} from 'angular2-modal';
 import {TaskModalContext, TaskModalComponent} from './task-modal.component';
 import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
+import {ModuleService} from '../api-firefly/module.service';
 
 @Component({
     selector: 'app-tasks-overview',
-    providers: [TaskService],
+    providers: [TaskService, ModuleService],
     templateUrl: './tasks-overview.component.html',
     styleUrls: ['./tasks-overview.component.css']
 })
