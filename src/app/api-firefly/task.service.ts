@@ -44,6 +44,8 @@ export class TaskService {
     createTask(task: Task): Observable<Task> {
         const headers = new Headers({'Content-Type': 'application/json'});
         const options = new RequestOptions({headers: headers});
+        console.log(task);
+        console.log(JSON.stringify(task));
         return this.http.post(TaskService.TASKS_URL, JSON.stringify(task), options)
             .map(TaskService.extractData)
             .catch(TaskService.handleError);

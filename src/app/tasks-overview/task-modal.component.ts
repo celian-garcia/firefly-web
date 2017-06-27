@@ -4,6 +4,7 @@ import {DialogRef, ModalComponent, CloseGuard} from 'angular2-modal';
 import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
 import {Task} from 'app/api-firefly/data/Task';
 import {Module} from '../api-firefly/data/Module';
+import {Type} from '../api-firefly/data/Type';
 import {TaskService} from '../api-firefly/task.service';
 import {ModuleService} from 'app/api-firefly/module.service';
 
@@ -19,10 +20,8 @@ export class TaskModalContext extends BSModalContext {
 export class TaskModalComponent implements OnInit, CloseGuard, ModalComponent<TaskModalContext> {
     context: TaskModalContext;
     task: Task;
-    selected_task_type: string;
     errorMessage: string;
-
-    modules: Module[];
+    modules_list: Module[];
 
     private static controlTaskBeforeCreate(task: Task): boolean {
         return true;
@@ -39,11 +38,16 @@ export class TaskModalComponent implements OnInit, CloseGuard, ModalComponent<Ta
     ngOnInit() {
         this.moduleService.getModules().subscribe(
             data => {
-                console.log(data);
-                this.modules = data;
+                this.modules_list = data;
+                this.task.module = this.modules_list[0].id;
+                this.task.type = this.modules_list[0].processing_types[0].id;
             },
             error => this.errorMessage = <any>error
-            );
+        );
+    }
+
+    getTypesFromModule(id: number): Type[] {
+        return this.modules_list.find(elt => elt.id === id).processing_types;
     }
 
     onCancel() {

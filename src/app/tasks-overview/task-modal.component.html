@@ -13,11 +13,14 @@
             <label for="task-desc">Description: </label><br/>
             <textarea name="task-desc" id="task-desc" [(ngModel)]="task.description" cols="40" rows="4"></textarea><br/>
 
-            <label for="task-type">Tâche: </label><br/>
-            <select name="task-type" id="task-type" [(ngModel)]="selected_task_type">
-                <optgroup *ngFor="let module of modules" [label]="module.title">
-                    <option *ngFor="let type of module.processing_types" [ngValue]="type.id">{{type.name}}</option>
-                </optgroup>
+            <label for="task-module">Module: </label><br/>
+            <select name="task-module" id="task-module" [(ngModel)]="task.module">
+                <option *ngFor="let module of modules_list" [ngValue]="module.id">{{module.title}}</option>
+            </select><br/>
+
+            <label for="task-module">Tâche: </label><br/>
+            <select *ngIf="task.module !== undefined" name="task-type" id="task-type" [(ngModel)]="task.type">
+                <option *ngFor="let type of getTypesFromModule(task.module)" [ngValue]="type.id">{{type.name}}</option>
             </select><br/>
         </div>
         <div class="task-modal-footer">

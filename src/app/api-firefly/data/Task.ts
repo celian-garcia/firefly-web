@@ -5,8 +5,8 @@ export class Task {
     id: string;
     name: string;
     description: string;
-    type: string;
-    module: string;
+    type: number;
+    module: number;
     user_name: string;
     date: string;
     state: number;
