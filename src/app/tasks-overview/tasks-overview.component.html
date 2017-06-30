@@ -1,7 +1,6 @@
 <button (click)="onClick()">Créer une nouvelle tâche</button>
-<p>{{view}}</p>
-<ul>
-    <li *ngFor="let task of tasks">
-        <app-task-line [task]="task"></app-task-line>
+<ul [ngClass]="viewTypeName(view)">
+    <li [ngClass]="viewTypeName(view)" *ngFor="let task of tasks">
+        <app-task-line [task]="task" [view]="view"></app-task-line>
     </li>
 </ul>

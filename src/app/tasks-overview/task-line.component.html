@@ -1,19 +1,19 @@
 <div class="task-card">
-    <div class="tc-content">
-        <div class="tc-header">
-            <span class="tc-header-left">{{task.name | capitalize}}</span>
-            <span class="tc-header-right">
-                <span class="tc-number">#{{task.id}}</span>
-                <img class="tc-state" *ngIf="states[task.state]" [src]="states[task.state]">
+    <div class="task-content">
+        <div [ngClass]="'task-' + viewTypeName(view) + '-header'">
+            <span [ngClass]="'task-' + viewTypeName(view) + '-header-left'">{{task.name | capitalize}}</span>
+            <span [ngClass]="'task-' + viewTypeName(view) + '-header-right'">
+                <span [ngClass]="'task-' + viewTypeName(view) + '-number'">#{{task.id}}</span>
+                <img [ngClass]="'task-' + viewTypeName(view) + '-state'" *ngIf="states[task.state]" [src]="states[task.state]">
             </span>
         </div>
-        <p class="tc-desc">
+        <p [ngClass]="'task-' + viewTypeName(view) + '-desc'">
             {{task.description}}
         </p>
-        <div class="tc-footer tc-text-footer">
+        <div [ngClass]="'task-' + viewTypeName(view) + '-footer task-card-text-footer'">
             Créé par {{task.user_name}} le {{task.date | date:'dd/MM/yyyy à HH:MM'}}
         </div>
     </div>
-    <div class="tc-shadow"></div>
-    <div class="tc-bottom"></div>
+    <div [ngClass]="'task-' + viewTypeName(view) + '-shadow'"></div>
+    <div [ngClass]="'task-' + viewTypeName(view) + '-bottom'"></div>
 </div>

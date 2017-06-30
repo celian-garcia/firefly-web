@@ -1,3 +1,7 @@
+.task-content {
+    padding: 8px;
+}
+
 .task-card {
     border-radius: 2px;
     overflow: hidden;
@@ -9,7 +13,18 @@
     box-shadow: 2px 1px 5px #101010;
 }
 
-.tc-desc {
+.task-line {
+    border-radius: 2px;
+    overflow: hidden;
+    background-color: #303030;
+    max-height: 200px;
+    width: 100%;
+    -webkit-box-shadow: 2px 1px 5px #101010;
+    -moz-box-shadow: 2px 1px 5px #101010;
+    box-shadow: 2px 1px 5px #101010;
+}
+
+.task-card-desc {
     margin: 10px;
     display: inline-block;
     height: 60px;
@@ -17,11 +32,11 @@
     text-overflow: ellipsis;
 }
 
-.tc-content {
-    padding: 8px;
+.task-line-desc {
+    display: none;
 }
 
-.tc-bottom {
+.task-card-bottom {
     height: 10px;
     background-color: white;
     -webkit-box-shadow: 0 0 1px 2px white;
@@ -29,11 +44,19 @@
     box-shadow: 0 0 1px 2px white;
 }
 
-.tc-shadow {
+.task-line-bottom {
+    display: none;
+}
+
+.task-card-shadow {
     box-shadow: 0 10px 60px 40px #444;
 }
 
-.tc-header {
+.task-line-shadow {
+    box-shadow: 0 10px 60px 40px #444;
+}
+
+.task-card-header {
     font-size: 20px;
     font-style: normal;
     font-variant: normal;
@@ -43,7 +66,17 @@
     border-bottom: 2px solid #3b3b3b;
 }
 
-.tc-header-left {
+.task_line-header {
+    font-size: 20px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 24px;
+    margin: 0;
+    border-bottom: 10px solid #3b3b3b;
+}
+
+.task-card-header-left {
     max-width: 70%;
     display: inline-block;
     overflow: hidden !important;
@@ -51,29 +84,59 @@
     white-space: nowrap;
 }
 
-.tc-header-right {
+.task-line-header-left {
+    max-width: 70%;
+    display: inline-block;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.task-card-header-right {
     float: right;
 }
 
-.tc-number {
+.task-line-header-right {
+    float: right;
+}
+
+.task-card-number {
     float: right;
     margin-left: 10px;
 }
 
-.tc-state {
+.task-line-number {
+    float: right;
+    margin-left: 10px;
+}
+
+.task-card-state {
     width: 20px;
     float: right;
 }
 
-.tc-footer {
+.task-line-state {
+    width: 20px;
+    float: right;
+}
+
+.task-card-footer {
     text-align: right;
     margin-right: 10px;
 }
 
-.tc-text-footer {
+.task-line-footer {
+    display: none;
+}
+
+.task-card-text-footer {
     font-size: 13px;
     font-style: italic;
     font-variant: normal;
     font-weight: 500;
     line-height: 13px;
+}
+
+.task-line-text-footer {
+    display: none;
 }

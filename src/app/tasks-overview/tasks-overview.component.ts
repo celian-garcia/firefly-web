@@ -2,8 +2,8 @@ import {Component, OnInit, ViewContainerRef, Input} from '@angular/core';
 import {TaskService} from '../api-firefly/task.service';
 import {Task} from '../api-firefly/data/Task';
 import {Modal} from 'angular2-modal/plugins/bootstrap/modal';
-import {DialogRef, overlayConfigFactory} from 'angular2-modal';
-import {TaskModalContext, TaskModalComponent} from './task-modal.component';
+import {overlayConfigFactory} from 'angular2-modal';
+import {TaskModalComponent} from './task-modal.component';
 import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
 import {ModuleService} from '../api-firefly/module.service';
 import {ViewType} from '../toolbar/data/ViewType';
@@ -47,6 +47,10 @@ export class TasksOverviewComponent implements OnInit {
                     });
                 }
             );
+    }
+
+    viewTypeName(view: ViewType): string {
+        return view === ViewType.LIST ? 'line' : 'card';
     }
 
 }
