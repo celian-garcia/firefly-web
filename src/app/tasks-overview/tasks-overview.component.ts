@@ -2,7 +2,7 @@ import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {TaskService} from '../api-firefly/task.service';
 import {Task} from '../api-firefly/data/Task';
 import {Modal} from 'angular2-modal/plugins/bootstrap/modal';
-import {overlayConfigFactory} from 'angular2-modal';
+import {DialogRef, overlayConfigFactory} from 'angular2-modal';
 import {TaskModalContext, TaskModalComponent} from './task-modal.component';
 import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
 import {ModuleService} from '../api-firefly/module.service';
@@ -23,10 +23,10 @@ export class TasksOverviewComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getTasks();
+        this.refreshTasksList();
     }
 
-    getTasks() {
+    refreshTasksList() {
         this.taskService.getTasks()
             .subscribe(
                 tasks => this.tasks = tasks,
@@ -34,11 +34,15 @@ export class TasksOverviewComponent implements OnInit {
     }
 
     onClick() {
-        return this.modal.open(TaskModalComponent, overlayConfigFactory({num1: 2, num2: 3}, BSModalContext));
+        return this.modal.open(TaskModalComponent, overlayConfigFactory({num1: 2, num2: 3}, BSModalContext))
+            .then((dialog) => {
+                    dialog.result.then(result => {
+                        this.tasks.push(result);
+                    }).catch((err) => {
+                        alert(err);
+                    });
+                }
+            );
     }
-
-    // addTask(name: string) {
-    //
-    // }
 
 }

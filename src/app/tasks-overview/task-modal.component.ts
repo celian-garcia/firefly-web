@@ -60,15 +60,15 @@ export class TaskModalComponent implements OnInit, CloseGuard, ModalComponent<Ta
         }
         this.taskService.createTask(this.task)
             .subscribe(
-                task => console.log(task),
+                task => this.task = task,
                 error => {
                     this.errorMessage = <any>error;
-                    console.log(this.errorMessage);
                 });
-        this.dialog.dismiss();
+        this.dialog.close(this.task);
     }
 
     beforeDismiss(): boolean {
+        alert(this.errorMessage);
         return false;
     }
 
