@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, OnInit, ViewContainerRef, Input} from '@angular/core';
 import {TaskService} from '../api-firefly/task.service';
 import {Task} from '../api-firefly/data/Task';
 import {Modal} from 'angular2-modal/plugins/bootstrap/modal';
@@ -6,6 +6,7 @@ import {DialogRef, overlayConfigFactory} from 'angular2-modal';
 import {TaskModalContext, TaskModalComponent} from './task-modal.component';
 import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
 import {ModuleService} from '../api-firefly/module.service';
+import {ViewType} from '../toolbar/data/ViewType';
 
 @Component({
     selector: 'app-tasks-overview',
@@ -18,8 +19,11 @@ export class TasksOverviewComponent implements OnInit {
     errorMessage: string;
     tasks: Task[];
 
+    @Input() view: ViewType;
+
     constructor(vcRef: ViewContainerRef, public modal: Modal, private taskService: TaskService) {
         this.modal.overlay.defaultViewContainer = vcRef;
+        console.log(this.view);
     }
 
     ngOnInit() {
