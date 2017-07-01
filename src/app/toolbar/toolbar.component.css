@@ -15,3 +15,7 @@
     -webkit-box-shadow: 0 0 20px #000;
     -moz-box-shadow: 0 0 20px #000;
 }
+
+.toolbar-btn {
+    float: right;
+}

@@ -1,32 +1,23 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ViewType} from './data/ViewType';
+import {Component} from '@angular/core';
+import {ToolbarButtonService} from './toolbar-button.service';
 
 @Component({
     selector: 'app-toolbar',
     templateUrl: './toolbar.component.html',
     styleUrls: ['./toolbar.component.css']
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent {
     fullTitleImagePath: string;
-    currentViewIsList: boolean;
 
-    @Output() toggle: EventEmitter<ViewType> = new EventEmitter();
-
-    constructor() {
+    constructor(private _buttonService: ToolbarButtonService) {
         this.fullTitleImagePath = 'assets/images/firefly_title.png';
-        this.currentViewIsList = true;
     }
 
-    ngOnInit() {
-        this.emitToggleEvent();
+    onClickCreateTask() {
+        this._buttonService.createTask();
     }
 
-    onClick() {
-        this.currentViewIsList = !this.currentViewIsList;
-        this.emitToggleEvent();
-    }
-
-    private emitToggleEvent() {
-        this.toggle.emit(this.currentViewIsList ? ViewType.LIST : ViewType.CARDS);
+    onClickToggleView() {
+        this._buttonService.toggleView();
     }
 }

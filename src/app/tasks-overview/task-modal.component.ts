@@ -7,6 +7,7 @@ import {Module} from '../api-firefly/data/Module';
 import {Type} from '../api-firefly/data/Type';
 import {TaskService} from '../api-firefly/task.service';
 import {ModuleService} from 'app/api-firefly/module.service';
+import {ToolbarButtonService} from '../toolbar/toolbar-button.service';
 
 export class TaskModalContext extends BSModalContext {
 }
@@ -58,17 +59,19 @@ export class TaskModalComponent implements OnInit, CloseGuard, ModalComponent<Ta
         if (!TaskModalComponent.controlTaskBeforeCreate(this.task)) {
             return;
         }
-        this.taskService.createTask(this.task)
-            .subscribe(
-                task => this.task = task,
-                error => {
-                    this.errorMessage = <any>error;
-                });
-        this.dialog.close(this.task);
+        this.taskService.createTask(this.task).subscribe(
+            task => {
+                this.task = task
+                this.dialog.close(this.task);
+            },
+            error => {
+                this.errorMessage = <any>error;
+                this.dialog.dismiss();
+            }
+        );
     }
 
     beforeDismiss(): boolean {
-        alert(this.errorMessage);
         return false;
     }
 

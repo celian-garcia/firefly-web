@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Task} from 'app/api-firefly/data/Task';
-import {ViewType} from '../toolbar/data/ViewType';
 
 @Component({
     selector: 'app-task-line',
@@ -8,7 +7,7 @@ import {ViewType} from '../toolbar/data/ViewType';
     styleUrls: ['./task-line.component.css']
 })
 
-export class TaskLineComponent implements OnInit {
+export class TaskLineComponent {
     static STATES: { [key: string]: string; } = {
         '0': 'assets/images/CREATED.png',
         '1': 'assets/images/STARTED.png',
@@ -18,21 +17,12 @@ export class TaskLineComponent implements OnInit {
     };
 
     @Input() task: Task;
-    @Input() view: ViewType;
+    @Input() view_name: string;
 
-    view_type_name: string;
     states: { [key: string]: string; };
 
     constructor() {
         this.states = TaskLineComponent.STATES;
-    }
-
-    ngOnInit() {
-        this.view_type_name = ViewType[this.view];
-    }
-
-    viewTypeName(view: ViewType): string {
-        return view === ViewType.LIST ? 'line' : 'card';
     }
 
 }

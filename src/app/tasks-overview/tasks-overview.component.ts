@@ -6,7 +6,8 @@ import {overlayConfigFactory} from 'angular2-modal';
 import {TaskModalComponent} from './task-modal.component';
 import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
 import {ModuleService} from '../api-firefly/module.service';
-import {ViewType} from '../toolbar/data/ViewType';
+import {ToolbarButtonService} from 'app/toolbar/toolbar-button.service';
+import {isNullOrUndefined} from 'util';
 
 @Component({
     selector: 'app-tasks-overview',
@@ -16,17 +17,23 @@ import {ViewType} from '../toolbar/data/ViewType';
 })
 export class TasksOverviewComponent implements OnInit {
 
-    errorMessage: string;
+    static VIEWS_MAP: { [key: number]: string; } = {
+        0: 'line',
+        1: 'card'
+    };
+
+    error_message: string;
     tasks: Task[];
+    view_name: string;
 
-    @Input() view: ViewType;
-
-    constructor(vcRef: ViewContainerRef, public modal: Modal, private taskService: TaskService) {
+    constructor(vcRef: ViewContainerRef, public modal: Modal, private taskService: TaskService,
+                private _toolbarButtonService: ToolbarButtonService) {
         this.modal.overlay.defaultViewContainer = vcRef;
-        console.log(this.view);
     }
 
     ngOnInit() {
+        this._toolbarButtonService.subscribeCreateTask(_ => this._openCreationModal());
+        this._toolbarButtonService.subscribeToggleView(view_id => this._setView(view_id));
         this.refreshTasksList();
     }
 
@@ -34,23 +41,27 @@ export class TasksOverviewComponent implements OnInit {
         this.taskService.getTasks()
             .subscribe(
                 tasks => this.tasks = tasks,
-                error => this.errorMessage = <any>error);
+                error => this.error_message = <any>error);
     }
 
-    onClick() {
-        return this.modal.open(TaskModalComponent, overlayConfigFactory({num1: 2, num2: 3}, BSModalContext))
+    private _setView(view_id: number) {
+        console.log('Received toggle view event');
+        this.view_name = TasksOverviewComponent.VIEWS_MAP[view_id];
+    }
+
+    private _openCreationModal() {
+        console.log('Received task creation event');
+        this.modal.open(TaskModalComponent, overlayConfigFactory({num1: 2, num2: 3}, BSModalContext))
             .then((dialog) => {
                     dialog.result.then(result => {
-                        this.tasks.push(result);
+                        if (!isNullOrUndefined(result)) {
+                            this.tasks.push(result);
+                        }
                     }).catch((err) => {
                         alert(err);
                     });
                 }
             );
-    }
-
-    viewTypeName(view: ViewType): string {
-        return view === ViewType.LIST ? 'line' : 'card';
     }
 
 }
