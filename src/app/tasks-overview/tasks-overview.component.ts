@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewContainerRef, Input} from '@angular/core';
+import {Component, OnInit, ViewContainerRef, Input, EventEmitter, Output} from '@angular/core';
 import {TaskService} from '../api-firefly/task.service';
 import {Task} from '../api-firefly/data/Task';
 import {Modal} from 'angular2-modal/plugins/bootstrap/modal';
@@ -22,6 +22,7 @@ export class TasksOverviewComponent implements OnInit {
         1: 'card'
     };
 
+    @Output() clickTask: EventEmitter<Task> = new EventEmitter();
     error_message: string;
     tasks: Task[];
     view_name: string;
@@ -62,6 +63,12 @@ export class TasksOverviewComponent implements OnInit {
                     });
                 }
             );
+    }
+
+    onClick(task: Task) {
+        console.log ("Sent task :");
+        console.log (task);
+        this.clickTask.next(task);
     }
 
 }

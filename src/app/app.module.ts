@@ -8,10 +8,12 @@ import {ModalModule} from 'angular2-modal';
 import {AppComponent} from './app.component';
 import {TasksOverviewModule} from './tasks-overview/tasks-overview.module';
 import {ToolbarModule} from 'app/toolbar/toolbar.module';
+import { AppTaskViewComponent } from './app-task-view/app-task-view.component';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        AppTaskViewComponent
     ],
     imports: [
         BrowserModule,

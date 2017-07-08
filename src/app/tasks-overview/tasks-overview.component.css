@@ -9,8 +9,8 @@ ul {
 }
 
 li.line {
-    width: 100%;
     margin: 5px 20px;
+    width: 100%;
 }
 
 li.card {

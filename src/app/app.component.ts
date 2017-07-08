@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ToolbarButtonService} from './toolbar/toolbar-button.service';
+import {Task} from 'app/api-firefly/data/Task';
 
 @Component({
     selector: 'app-root',
@@ -10,9 +11,18 @@ import {ToolbarButtonService} from './toolbar/toolbar-button.service';
 })
 export class AppComponent implements OnInit {
 
+    task: Task;
+    taskSelected: boolean;
+
     constructor() {
     }
 
     ngOnInit() {
+        this.taskSelected = false;
+    }
+
+    updateTask(event) {
+        this.taskSelected = true;
+        this.task = event;
     }
 }

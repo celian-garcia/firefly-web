@@ -1,5 +1,5 @@
 <ul [ngClass]="view_name">
     <li [ngClass]="view_name" *ngFor="let task of tasks">
-        <app-task-line [task]="task" [view_name]="view_name"></app-task-line>
+        <app-task-line (click)="onClick(task)" [task]="task" [view_name]="view_name"></app-task-line>
     </li>
 </ul>
