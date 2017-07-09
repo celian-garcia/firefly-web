@@ -8,6 +8,8 @@ import {Task} from 'app/api-firefly/data/Task';
 })
 
 export class TaskLineComponent {
+
+    // TODO : provide it as a service
     static STATES: { [key: string]: string; } = {
         '0': 'assets/images/CREATED.png',
         '1': 'assets/images/STARTED.png',

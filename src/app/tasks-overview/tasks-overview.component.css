@@ -1,21 +1,22 @@
 ul {
+    margin: auto;
     list-style-type: none;
     display: flex;
-    align-content: space-around;
-    flex-flow: row wrap;
+    align-content: space-between;
     justify-content: space-between;
+    flex-flow: row wrap;
     align-items: stretch;
     padding: 0;
 }
 
 li.line {
-    margin: 5px 20px;
     width: 100%;
+    margin: 3px 5px;
 }
 
 li.card {
-    flex: 1 1 450px;
-    margin: 20px;
+    width : 300px;
+    margin: 10px 5px;
 }
 
 app-task-line {

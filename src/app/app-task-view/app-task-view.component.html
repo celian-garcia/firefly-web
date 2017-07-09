@@ -1,3 +1,28 @@
-<p *ngIf="task !== undefined">
-  {{task.name}}
-</p>
+<div *ngIf="task !== undefined">
+    <h3>
+        <span>{{task.name | capitalize}}</span>
+        <span>
+            <span>#{{task.id}}</span>
+            <img *ngIf="states[task.state]" [src]="states[task.state]"/>
+        </span>
+    </h3>
+    <div class="babylon-canvas firefly-box">
+        <div class="firefly-box-shadow"></div>
+    </div>
+    <span>Description : </span>
+    <p>{{task.description}}</p>
+    <br>
+    <span>Utilisateur : </span>
+    <p>{{task.user_name}}</p>
+    <br>
+    <span>Date de création : </span>
+    <p>{{task.date}}</p>
+    <br>
+    <!--<span>Module : </span>-->
+    <!--<p>{{task.module}}</p>-->
+    <!--<br>-->
+    <!--<span>Type : </span>-->
+    <!--<p>{{task.type}}</p>-->
+
+
+</div>

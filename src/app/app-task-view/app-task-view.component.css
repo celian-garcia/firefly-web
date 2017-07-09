@@ -1,0 +1,22 @@
+.babylon-canvas {
+    width: 100%;
+    min-height: 100px;
+    background-color: #444444;
+}
+
+/***************************************
+TODO : Put these box in a common element
+ */
+.firefly-box {
+    overflow: hidden;
+    border-radius: 2px;
+    background-color: #303030;
+    -webkit-box-shadow: 2px 1px 5px #101010;
+    -moz-box-shadow: 2px 1px 5px #101010;
+    box-shadow: 2px 1px 5px #101010;
+}
+
+.firefly-box-shadow {
+    box-shadow: 0 10px 60px 40px #444;
+}
+/******************************************/

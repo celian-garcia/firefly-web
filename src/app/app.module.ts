@@ -9,11 +9,11 @@ import {AppComponent} from './app.component';
 import {TasksOverviewModule} from './tasks-overview/tasks-overview.module';
 import {ToolbarModule} from 'app/toolbar/toolbar.module';
 import { AppTaskViewComponent } from './app-task-view/app-task-view.component';
+import {AppTaskViewModule} from './app-task-view/app-task-view.module';
 
 @NgModule({
     declarations: [
-        AppComponent,
-        AppTaskViewComponent
+        AppComponent
     ],
     imports: [
         BrowserModule,
@@ -22,7 +22,8 @@ import { AppTaskViewComponent } from './app-task-view/app-task-view.component';
         TasksOverviewModule,
         ToolbarModule,
         ModalModule.forRoot(),
-        BootstrapModalModule
+        BootstrapModalModule,
+        AppTaskViewModule
     ],
     bootstrap: [AppComponent]
 })

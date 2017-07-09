@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "C:\\Users\\celia\\Development\\projects\\firefly\\server\\build\\debug\\bin\\FIREFLY_LAUNCHER.exe 8080 C:\\Users\\celia\\Development\\projects\\firefly\\front\\dist 5",
-    "build": "ng build",
+    "build": "ng build && C:\\Users\\celia\\Development\\projects\\firefly\\server\\build\\debug\\bin\\FIREFLY_LAUNCHER.exe 8080 C:\\Users\\celia\\Development\\projects\\firefly\\front\\dist 5",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

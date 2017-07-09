@@ -3,26 +3,26 @@
 }
 
 .task-card {
-    border-radius: 2px;
-    overflow: hidden;
-    background-color: #303030;
     max-height: 200px;
     width: 100%;
+}
+
+/***************************************
+TODO : Put these box in a common element
+ */
+.firefly-box {
+    overflow: hidden;
+    border-radius: 2px;
+    background-color: #303030;
     -webkit-box-shadow: 2px 1px 5px #101010;
     -moz-box-shadow: 2px 1px 5px #101010;
     box-shadow: 2px 1px 5px #101010;
 }
 
-.task-line {
-    border-radius: 2px;
-    overflow: hidden;
-    background-color: #303030;
-    max-height: 200px;
-    width: 100%;
-    -webkit-box-shadow: 2px 1px 5px #101010;
-    -moz-box-shadow: 2px 1px 5px #101010;
-    box-shadow: 2px 1px 5px #101010;
+.firefly-box-shadow {
+    box-shadow: 0 10px 60px 40px #444;
 }
+/******************************************/
 
 .task-card-desc {
     margin: 10px;
@@ -48,14 +48,6 @@
     display: none;
 }
 
-.task-card-shadow {
-    box-shadow: 0 10px 60px 40px #444;
-}
-
-.task-line-shadow {
-    box-shadow: 0 10px 60px 40px #444;
-}
-
 .task-card-header {
     font-size: 20px;
     font-style: normal;
@@ -66,7 +58,7 @@
     border-bottom: 2px solid #3b3b3b;
 }
 
-.task_line-header {
+.task-line-header {
     font-size: 20px;
     font-style: normal;
     font-variant: normal;

@@ -12,14 +12,17 @@ app-toolbar {
     margin-top: 70px;
     display: flex;
     flex-wrap: nowrap;
+    justify-content: space-between;
 }
 
 app-tasks-overview {
     flex: 1;
+    margin: 10px;
 }
 
 app-task-view {
     flex: 4;
+    margin: 10px;
 }
 
 .hidden {
