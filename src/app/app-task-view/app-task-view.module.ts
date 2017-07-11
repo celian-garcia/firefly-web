@@ -6,7 +6,7 @@ import {UtilsModule} from '../utils/utils.module';
 @NgModule({
     imports: [
         CommonModule,
-        UtilsModule,
+        UtilsModule
     ],
     declarations: [AppTaskViewComponent],
     exports: [AppTaskViewComponent]

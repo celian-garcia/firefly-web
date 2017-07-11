@@ -6,8 +6,9 @@
             <img *ngIf="states[task.state]" [src]="states[task.state]"/>
         </span>
     </h3>
-    <div class="babylon-canvas firefly-box">
+    <div class="firefly-box">
         <div class="firefly-box-shadow"></div>
+        <canvas id="babylon-canvas"></canvas>
     </div>
     <span>Description : </span>
     <p>{{task.description}}</p>

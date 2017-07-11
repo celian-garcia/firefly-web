@@ -26,7 +26,8 @@
     "portfinder": "^1.0.13",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.1.0",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.4",
+    "babylonjs": "2.5"
   },
   "devDependencies": {
     "@angular/cli": "^1.0.0",
