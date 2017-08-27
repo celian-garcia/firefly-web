@@ -28,7 +28,7 @@ export class AppTaskViewComponent implements AfterViewChecked {
         const scene = new BABYLON.Scene(engine);
 
         // Change the scene background color to green.
-        scene.clearColor = new BABYLON.Color3(0, 1, 0);
+        scene.clearColor = new BABYLON.Color4(0, 1, 0, 1);
 
         // This creates and positions a free camera
         const camera = new BABYLON.ArcRotateCamera('ArcRotateCamera', 1, 0.8, 10, new BABYLON.Vector3(0, 0, 0), scene);
