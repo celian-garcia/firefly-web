@@ -1,0 +1,13 @@
+version: '3'
+services:
+  firefly-web-client:
+    build: .
+    container_name: firefly-web-client
+    ports:
+      - "8005:8000"
+    tty: true
+  firefly-api:
+    image: "celiangarcia/firefly:latest"
+    container_name: firefly-api
+    ports:
+      - "8085:8080"

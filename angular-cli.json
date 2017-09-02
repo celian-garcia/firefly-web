@@ -6,6 +6,7 @@
   "apps": [
     {
       "root": "src",
+      "prefix": "app",
       "outDir": "dist",
       "main": "main.ts",
       "tsconfig": "tsconfig.app.json",
@@ -34,11 +35,13 @@
     }
   },
   "defaults": {
-    "prefix": "app",
-    "sourceDir": "src",
     "styleExt": "css",
     "prefixInterfaces": false,
-    "lazyRoutePrefix": "+"
+    "lazyRoutePrefix": "+",
+    "serve": {
+      "port": 8000,
+      "host": "0.0.0.0"
+    }
   },
   "scripts": [],
   "styles": [],
