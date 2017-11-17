@@ -66,7 +66,7 @@ export class TasksOverviewComponent implements OnInit {
     }
 
     onClick(task: Task) {
-        console.log ("Sent task :");
+        console.log ('Sent task :');
         console.log (task);
         this.clickTask.next(task);
     }

@@ -1,9 +1,11 @@
-import {AfterViewChecked, AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Task} from 'protractor/built/taskScheduler';
+import {AfterViewChecked, Component, Input} from '@angular/core';
 import * as BABYLON from 'babylonjs';
+import {TaskService} from '../api-firefly/task.service';
+import {Task} from '../api-firefly/data/Task';
 
 @Component({
     selector: 'app-task-view',
+    providers: [TaskService],
     templateUrl: './app-task-view.component.html',
     styleUrls: ['./app-task-view.component.css']
 })
@@ -58,7 +60,7 @@ export class AppTaskViewComponent implements AfterViewChecked {
         return scene;
     }
 
-    constructor() {
+    constructor(private taskService: TaskService) {
         this.states = AppTaskViewComponent.STATES;
         this.babylonIsRunning = false;
     }
@@ -82,5 +84,12 @@ export class AppTaskViewComponent implements AfterViewChecked {
         engine.runRenderLoop(function () {
             scene.render();
         });
+    }
+
+    private onClickRunTask() {
+        this.taskService.runTask(this.task)
+            .subscribe(
+                resultOk => console.log(resultOk),
+                error => console.log(error));
     }
 }

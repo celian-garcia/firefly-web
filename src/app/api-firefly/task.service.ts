@@ -11,8 +11,6 @@ import 'rxjs/add/observable/throw';
 export class TaskService {
 
     private static TASKS_URL = 'api/v1/tasks';  // URL to web API
-    private static NAMES_URL = 'api/v1/names';  // URL to web API
-    private static CATEGORIES_URL = 'api/v1/categories';  // URL to web API
 
     private static extractData(res: Response) {
         return res.json() || {};
@@ -51,14 +49,11 @@ export class TaskService {
             .catch(TaskService.handleError);
     }
 
-    getNames(): Observable<string[]> {
-        return this.http.get(TaskService.NAMES_URL)
-            .map(TaskService.extractData)
-            .catch(TaskService.handleError);
-    }
-
-    getCategories(): Observable<string[]> {
-        return this.http.get(TaskService.CATEGORIES_URL)
+    runTask(task: Task) {
+        const headers = new Headers({'Content-Type': 'application/json'});
+        const options = new RequestOptions({headers: headers});
+        const url = TaskService.TASKS_URL + '/' + task.id + '/' + 'run';
+        return this.http.post(url, JSON.stringify(task), options)
             .map(TaskService.extractData)
             .catch(TaskService.handleError);
     }
