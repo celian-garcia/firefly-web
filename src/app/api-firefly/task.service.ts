@@ -6,17 +6,22 @@ import {Task} from './data/Task';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/do';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class TaskService {
 
     private static TASKS_URL = 'api/v1/tasks';  // URL to web API
 
+    public tasks$: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>([]);
+
     private static extractData(res: Response) {
         return res.json() || {};
     }
 
     public static handleError(error: Response | any) {
+        console.log(error);
         // In a real world app, you might use a remote logging infrastructure
         let errMsg: string;
         if (error instanceof Response) {
@@ -33,17 +38,18 @@ export class TaskService {
     constructor(private http: Http) {
     }
 
-    getTasks(): Observable<Task[]> {
+    updateTasks() {
         return this.http.get(TaskService.TASKS_URL)
-            .map(TaskService.extractData)
+            .map((data: Response) => data.json() || {})
+            .do((data) => this.tasks$.next(data))
             .catch(TaskService.handleError);
     }
 
     createTask(task: Task): Observable<Task> {
         const headers = new Headers({'Content-Type': 'application/json'});
         const options = new RequestOptions({headers: headers});
-        console.log(task);
-        console.log(JSON.stringify(task));
+        // console.log(task);
+        // console.log(JSON.stringify(task));
         return this.http.post(TaskService.TASKS_URL, JSON.stringify(task), options)
             .map(TaskService.extractData)
             .catch(TaskService.handleError);
@@ -57,5 +63,6 @@ export class TaskService {
             .map(TaskService.extractData)
             .catch(TaskService.handleError);
     }
+
 
 }

@@ -16,33 +16,33 @@ import {isNullOrUndefined} from 'util';
     styleUrls: ['./tasks-overview.component.css']
 })
 export class TasksOverviewComponent implements OnInit {
-
+    static REFRESH_TIME = 1000;
     static VIEWS_MAP: { [key: number]: string; } = {
         0: 'line',
         1: 'card'
     };
 
     @Output() clickTask: EventEmitter<Task> = new EventEmitter();
-    error_message: string;
     tasks: Task[];
     view_name: string;
 
     constructor(vcRef: ViewContainerRef, public modal: Modal, private taskService: TaskService,
-                private _toolbarButtonService: ToolbarButtonService) {
+                private _toolbarButtonService: ToolbarButtonService ) {
         this.modal.overlay.defaultViewContainer = vcRef;
     }
 
     ngOnInit() {
         this._toolbarButtonService.subscribeCreateTask(_ => this._openCreationModal());
         this._toolbarButtonService.subscribeToggleView(view_id => this._setView(view_id));
+
+        // Subscribe to tasks service and refresh the tasks list at the beginning and also regularly
+        this.taskService.tasks$.subscribe(data => this.tasks = data);
         this.refreshTasksList();
+        setInterval(() => this.refreshTasksList(), TasksOverviewComponent.REFRESH_TIME);
     }
 
     refreshTasksList() {
-        this.taskService.getTasks()
-            .subscribe(
-                tasks => this.tasks = tasks,
-                error => this.error_message = <any>error);
+        this.taskService.updateTasks().subscribe();
     }
 
     private _setView(view_id: number) {
@@ -66,8 +66,6 @@ export class TasksOverviewComponent implements OnInit {
     }
 
     onClick(task: Task) {
-        console.log ('Sent task :');
-        console.log (task);
         this.clickTask.next(task);
     }
 
