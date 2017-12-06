@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewContainerRef, Input, EventEmitter, Output} from '@angular/core';
 import {TaskService} from '../api-firefly/task.service';
-import {Task} from '../api-firefly/data/Task';
+import {TaskMetadata} from '../api-firefly/data/TaskMetadata';
 import {Modal} from 'angular2-modal/plugins/bootstrap/modal';
 import {overlayConfigFactory} from 'angular2-modal';
 import {TaskModalComponent} from './task-modal.component';
@@ -22,8 +22,8 @@ export class TasksOverviewComponent implements OnInit {
         1: 'card'
     };
 
-    @Output() clickTask: EventEmitter<Task> = new EventEmitter();
-    tasks: Task[];
+    @Output() clickTask: EventEmitter<TaskMetadata> = new EventEmitter();
+    tasks: TaskMetadata[];
     view_name: string;
 
     constructor(vcRef: ViewContainerRef, public modal: Modal, private taskService: TaskService,
@@ -65,7 +65,7 @@ export class TasksOverviewComponent implements OnInit {
             );
     }
 
-    onClick(task: Task) {
+    onClick(task: TaskMetadata) {
         this.clickTask.next(task);
     }
 

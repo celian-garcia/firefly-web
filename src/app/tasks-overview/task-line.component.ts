@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Task} from 'app/api-firefly/data/Task';
+import {TaskMetadata} from 'app/api-firefly/data/TaskMetadata';
 
 @Component({
     selector: 'app-task-line',
@@ -18,7 +18,7 @@ export class TaskLineComponent {
         '4': 'assets/images/ABORTED.png'
     };
 
-    @Input() task: Task;
+    @Input() task: TaskMetadata;
     @Input() view_name: string;
 
     states: { [key: string]: string; };

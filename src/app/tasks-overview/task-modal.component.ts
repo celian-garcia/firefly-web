@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {DialogRef, ModalComponent, CloseGuard} from 'angular2-modal';
 import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
-import {Task} from 'app/api-firefly/data/Task';
+import {TaskMetadata} from 'app/api-firefly/data/TaskMetadata';
 import {Module} from '../api-firefly/data/Module';
 import {Type} from '../api-firefly/data/Type';
 import {TaskService} from '../api-firefly/task.service';
@@ -19,17 +19,17 @@ export class TaskModalContext extends BSModalContext {
 })
 export class TaskModalComponent implements OnInit, CloseGuard, ModalComponent<TaskModalContext> {
     context: TaskModalContext;
-    task: Task;
+    task: TaskMetadata;
     errorMessage: string;
     modules_list: Module[];
 
-    private static controlTaskBeforeCreate(task: Task): boolean {
+    private static controlTaskBeforeCreate(task: TaskMetadata): boolean {
         return true;
     }
 
     constructor(public dialog: DialogRef<TaskModalContext>, private taskService: TaskService, private moduleService: ModuleService) {
         this.context = dialog.context;
-        this.task = new Task();
+        this.task = new TaskMetadata();
         this.task.name = 'Default title';
         this.task.description = 'Default description';
         dialog.setCloseGuard(this);

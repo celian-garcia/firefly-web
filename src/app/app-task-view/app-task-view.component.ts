@@ -1,7 +1,7 @@
 import {AfterViewChecked, Component, Input} from '@angular/core';
 import * as BABYLON from 'babylonjs';
 import {TaskService} from '../api-firefly/task.service';
-import {Task} from '../api-firefly/data/Task';
+import {TaskMetadata} from '../api-firefly/data/TaskMetadata';
 
 @Component({
     selector: 'app-task-view',
@@ -20,7 +20,7 @@ export class AppTaskViewComponent implements AfterViewChecked {
         '4': 'assets/images/ABORTED.png'
     };
 
-    @Input() task: Task;
+    @Input() task: TaskMetadata;
     private babylonIsRunning: boolean;
 
     states: { [key: string]: string; };

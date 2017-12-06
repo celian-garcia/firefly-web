@@ -1,7 +1,7 @@
 /**
  * Created by celia on 15/04/2017.
  */
-export class Task {
+export class TaskMetadata {
     id: string;
     name: string;
     description: string;
