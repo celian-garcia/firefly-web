@@ -9,6 +9,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/do';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {TaskOperation} from './data/TaskOperation';
+import {isNullOrUndefined} from "util";
 
 @Injectable()
 export class TaskService {
@@ -17,7 +18,24 @@ export class TaskService {
 
     public tasks$: BehaviorSubject<TaskMetadata[]> = new BehaviorSubject<TaskMetadata[]>([]);
 
-    private taskOperationsSubjects$: Map<string, BehaviorSubject<TaskOperation[]>> = new Map();
+    // Two subjects designed to be used by each task view which have been initialized with only task_id
+    /**
+     * Permits to store operations of a task retrieved from the server.
+     * Stored by task_id.
+     * @type {Map<string, BehaviorSubject<TaskOperation[]>>}
+     */
+    private taskOperationsById$: Map<string, BehaviorSubject<TaskOperation[]>> = new Map();
+    /**
+     * Permits to store metadata of a task retrieved from the server.
+     * Stored by task_id.
+     * @type {Map<string, BehaviorSubject<TaskMetadata>>}
+     */
+    private taskMetadataById$: Map<string, BehaviorSubject<TaskMetadata>> = new Map();
+    /**
+     * Permits to store current last operation index of a task. This is updated on each operations retrieval.
+     * Stored by task_id.
+     * @type {Map<string, number>}
+     */
     private taskLastOperations: Map<string, number> = new Map();
 
     private static extractData(res: Response) {
@@ -43,20 +61,30 @@ export class TaskService {
     }
 
     updateTasks() {
-        const currentTaskOperationsSubjects$ = this.taskOperationsSubjects$;
-        const currentTaskLastOperations = this.taskLastOperations;
+        const that = this;
         return this.http.get(TaskService.TASKS_URL)
             .map((data: Response) => data.json() || {})
             .do((data) => {
                 // Create Operations subject for each task if necessary, with its associated last operation
                 for (const elem of data) {
                     const task = elem as TaskMetadata;
-                    if (!currentTaskOperationsSubjects$.has(task.id)) {
-                        currentTaskOperationsSubjects$[task.id] = new BehaviorSubject<TaskOperation[]>([]);
+                    if (!that.taskOperationsById$.has(task.id)) {
+                        // Task operations is initially an empty list
+                        that.taskOperationsById$.set(task.id, new BehaviorSubject<TaskOperation[]>([]));
                     }
 
-                    if (!currentTaskLastOperations.has(task.id)) {
-                        currentTaskLastOperations[task.id] = 0;
+                    if (!that.taskMetadataById$.has(task.id)) {
+                        // As we already have the task metadata, we put it in the subject initialization
+                        const subject = new BehaviorSubject<TaskMetadata>(task);
+                        // subject.subscribe();
+                        that.taskMetadataById$.set(task.id, subject);
+                    } else {
+                        that.taskMetadataById$.get(task.id).next(task);
+                    }
+
+                    if (!that.taskLastOperations.has(task.id)) {
+                        that.taskLastOperations.set(task.id, 0);
+
                     }
                 }
                 return this.tasks$.next(data);
@@ -67,24 +95,22 @@ export class TaskService {
     createTask(task: TaskMetadata): Observable<TaskMetadata> {
         const headers = new Headers({'Content-Type': 'application/json'});
         const options = new RequestOptions({headers: headers});
-        // console.log(task);
-        // console.log(JSON.stringify(task));
         return this.http.post(TaskService.TASKS_URL, JSON.stringify(task), options)
             .map(TaskService.extractData)
             .catch(TaskService.handleError);
     }
 
-    runTask(task: TaskMetadata) {
+    runTask(taskId: string) {
         const headers = new Headers({'Content-Type': 'application/json'});
         const options = new RequestOptions({headers: headers});
-        const url = TaskService.TASKS_URL + '/' + task.id + '/' + 'run';
-        return this.http.post(url, JSON.stringify(task), options)
+        const url = TaskService.TASKS_URL + '/' + taskId + '/' + 'run';
+        return this.http.post(url, '', options)
             .map(TaskService.extractData)
             .catch(TaskService.handleError);
     }
 
     fetchOperations(taskId: string) {
-        const currentTaskOperationsSubjects$ = this.taskOperationsSubjects$;
+        const currentTaskOperationsById$ = this.taskOperationsById$;
         const currentTaskLastOperations = this.taskLastOperations;
 
         // Build the operation url
@@ -99,12 +125,16 @@ export class TaskService {
                 currentTaskLastOperations.set(taskId, data.lastOperationIndex as number);
 
                 // Update the new operations subject
-                return currentTaskOperationsSubjects$.get(taskId).next(data.operations as TaskOperation[]);
+                return currentTaskOperationsById$.get(taskId).next(data.operations as TaskOperation[]);
             })
             .catch(TaskService.handleError);
     }
 
     getOperationsSubject(taskId: string) {
-        return this.taskOperationsSubjects$.get(taskId);
+        return this.taskOperationsById$.get(taskId);
+    }
+
+    getTaskMetadataSubject(taskId: string) {
+        return this.taskMetadataById$.get(taskId);
     }
 }

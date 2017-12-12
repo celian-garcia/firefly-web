@@ -1,17 +1,15 @@
-import {Component, OnInit, ViewContainerRef, Input, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, ViewContainerRef, EventEmitter, Output} from '@angular/core';
 import {TaskService} from '../api-firefly/task.service';
 import {TaskMetadata} from '../api-firefly/data/TaskMetadata';
 import {Modal} from 'angular2-modal/plugins/bootstrap/modal';
 import {overlayConfigFactory} from 'angular2-modal';
 import {TaskModalComponent} from './task-modal.component';
 import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
-import {ModuleService} from '../api-firefly/module.service';
 import {ToolbarButtonService} from 'app/toolbar/toolbar-button.service';
 import {isNullOrUndefined} from 'util';
 
 @Component({
     selector: 'app-tasks-overview',
-    providers: [TaskService, ModuleService],
     templateUrl: './tasks-overview.component.html',
     styleUrls: ['./tasks-overview.component.css']
 })
@@ -22,7 +20,7 @@ export class TasksOverviewComponent implements OnInit {
         1: 'card'
     };
 
-    @Output() clickTask: EventEmitter<TaskMetadata> = new EventEmitter();
+    @Output() clickTask: EventEmitter<string> = new EventEmitter();
     tasks: TaskMetadata[];
     view_name: string;
 
@@ -32,13 +30,17 @@ export class TasksOverviewComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('tasks-overview -- NgOnInit');
         this._toolbarButtonService.subscribeCreateTask(_ => this._openCreationModal());
         this._toolbarButtonService.subscribeToggleView(view_id => this._setView(view_id));
 
         // Subscribe to tasks service and refresh the tasks list at the beginning and also regularly
-        this.taskService.tasks$.subscribe(data => this.tasks = data);
+        this.taskService.tasks$.subscribe(data => {
+            this.tasks = data;
+        });
         this.refreshTasksList();
         setInterval(() => this.refreshTasksList(), TasksOverviewComponent.REFRESH_TIME);
+        console.log('tasks-overview -- NgOnInit done');
     }
 
     refreshTasksList() {
@@ -66,7 +68,7 @@ export class TasksOverviewComponent implements OnInit {
     }
 
     onClick(task: TaskMetadata) {
-        this.clickTask.next(task);
+        this.clickTask.next(task.id);
     }
 
 }
