@@ -8,8 +8,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/do';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {ReplaySubject} from 'rxjs/ReplaySubject';
 import {TaskOperation} from './data/TaskOperation';
-import {isNullOrUndefined} from "util";
 
 @Injectable()
 export class TaskService {
@@ -22,9 +22,9 @@ export class TaskService {
     /**
      * Permits to store operations of a task retrieved from the server.
      * Stored by task_id.
-     * @type {Map<string, BehaviorSubject<TaskOperation[]>>}
+     * @type {Map<string, ReplaySubject<TaskOperation[]>>}
      */
-    private taskOperationsById$: Map<string, BehaviorSubject<TaskOperation[]>> = new Map();
+    private taskOperationsById$: Map<string, ReplaySubject<TaskOperation[]>> = new Map();
     /**
      * Permits to store metadata of a task retrieved from the server.
      * Stored by task_id.
@@ -70,7 +70,7 @@ export class TaskService {
                     const task = elem as TaskMetadata;
                     if (!that.taskOperationsById$.has(task.id)) {
                         // Task operations is initially an empty list
-                        that.taskOperationsById$.set(task.id, new BehaviorSubject<TaskOperation[]>([]));
+                        that.taskOperationsById$.set(task.id, new ReplaySubject<TaskOperation[]>());
                     }
 
                     if (!that.taskMetadataById$.has(task.id)) {
@@ -136,5 +136,9 @@ export class TaskService {
 
     getTaskMetadataSubject(taskId: string) {
         return this.taskMetadataById$.get(taskId);
+    }
+
+    reinitializeOperations(taskId: string) {
+        this.taskLastOperations.set(taskId, 0);
     }
 }

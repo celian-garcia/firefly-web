@@ -7,5 +7,11 @@ export class TaskOperation {
 export class Element {
     id: number;
     type: string;
-    value: object;
+    value: Point;
+}
+
+export class Point {
+    x: number;
+    y: number;
+    z: number;
 }
