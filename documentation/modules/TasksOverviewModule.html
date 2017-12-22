@@ -1,0 +1,773 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>firefly-front documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	    <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">firefly-front documentation</a>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+            <div id="book-search-input" role="search">
+                <input type="text" placeholder="Type to search">
+            </div>
+            <nav>
+            
+                <ul class="list">
+            
+                    <li class="title">
+                        <a href="../index.html">firefly-front documentation</a>
+                    </li>
+            
+                    <li class="divider"></li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../index.html"><span class="fa fa-home"></span>Getting started</a>
+                        <ul class="links">
+                                <li class="link">
+                                    <a 
+                                        
+                                         href="../overview.html" 
+                                         href="../overview.html" 
+                                        >
+                                        <span class="fa fa-th"></span>Overview
+                                    </a>
+                                </li>
+                                <li class="link">
+                                  <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../modules.html" >
+                            <div class="menu-toggler linked" data-toggle="collapse"
+                                    data-target="#xs-modules-links"
+                            >
+                                <span class="fa fa-archive"></span>
+                                <span class="link-name">Modules</span>
+                                <span class="fa fa-angle-down"></span>
+                            </div>
+                        </a>
+                        <ul class="links collapse "
+                                id="xs-modules-links"
+                            >
+                                <li class="link">
+                                    <a href="../modules/ApiFireflyModule.html" >ApiFireflyModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/AppModule.html" >AppModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/AppTaskViewModule.html" >AppTaskViewModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TasksOverviewModule.html"  data-type="entity-link" class="active" >TasksOverviewModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/ToolbarModule.html" >ToolbarModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/UtilsModule.html" >UtilsModule</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-components-links"
+                            >
+                            <span class="fa fa-cogs"></span>
+                            <span>Components</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-components-links"
+                            >
+                                <li class="link">
+                                    <a href="../components/AppComponent.html" >AppComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/AppTaskViewComponent.html" >AppTaskViewComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TaskLineComponent.html" >TaskLineComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TaskModalComponent.html" >TaskModalComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TasksOverviewComponent.html" >TasksOverviewComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/ToolbarComponent.html" >ToolbarComponent</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-classes-links"
+                            >
+                            <span class="fa fa-file-code-o"></span>
+                            <span>Classes</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-classes-links"
+                            >
+                                <li class="link">
+                                    <a href="../classes/Element.html" >Element</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/FireflyFrontPage.html" >FireflyFrontPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Module.html" >Module</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Point.html" >Point</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/TaskMetadata.html" >TaskMetadata</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/TaskModalContext.html" >TaskModalContext</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/TaskOperation.html" >TaskOperation</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Type.html" >Type</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-injectables-links"
+                            >
+                            <span class="fa fa-long-arrow-down"></span>
+                            <span>Injectables</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-injectables-links"
+                            >
+                                <li class="link">
+                                    <a href="../injectables/ModuleService.html" >ModuleService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/TaskService.html" >TaskService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/ToolbarButtonService.html" >ToolbarButtonService</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+            
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-pipes-links"
+                            >
+                            <span class="fa fa-plus"></span>
+                            <span>Pipes</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-pipes-links"
+                            >
+                                <li class="link">
+                                    <a href="../pipes/CapitalizePipe.html" >CapitalizePipe</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-miscellaneous-links"
+                            >
+                            <span class="fa fa-cubes"></span>
+                            <span>Miscellaneous</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-miscellaneous-links"
+                            >
+                                <li class="link">
+                                  <a href="../miscellaneous/enumerations.html" data-type="entity-link" >Enums</a>
+                                </li>
+                                <li class="link">
+                                  <a href="../miscellaneous/variables.html" data-type="entity-link" >Variables</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                    </li>
+            
+                    <li class="divider"></li>
+                    <li class="copyright">
+                            Documentation generated using <a href="https://compodoc.github.io/website/" target="_blank">
+                                        <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                            </a>
+                    </li>
+            
+                </ul>
+            
+            </nav>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <nav>
+                   
+                       <ul class="list">
+                   
+                           <li class="title">
+                               <a href="../index.html">firefly-front documentation</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                   
+                               <div id="book-search-input" role="search">
+                                   <input type="text" placeholder="Type to search">
+                               </div>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../index.html"><span class="fa fa-home"></span>Getting started</a>
+                               <ul class="links">
+                                       <li class="link">
+                                           <a 
+                                               
+                                                href="../overview.html" 
+                                                href="../overview.html" 
+                                               >
+                                               <span class="fa fa-th"></span>Overview
+                                           </a>
+                                       </li>
+                                       <li class="link">
+                                         <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../modules.html" >
+                                   <div class="menu-toggler linked" data-toggle="collapse"
+                                           data-target="#modules-links"
+                                   >
+                                       <span class="fa fa-archive"></span>
+                                       <span class="link-name">Modules</span>
+                                       <span class="fa fa-angle-down"></span>
+                                   </div>
+                               </a>
+                               <ul class="links collapse "
+                                       id="modules-links"
+                   >
+                                       <li class="link">
+                                           <a href="../modules/ApiFireflyModule.html" >ApiFireflyModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/AppModule.html" >AppModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/AppTaskViewModule.html" >AppTaskViewModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TasksOverviewModule.html"  data-type="entity-link" class="active" >TasksOverviewModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/ToolbarModule.html" >ToolbarModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/UtilsModule.html" >UtilsModule</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#components-links"
+                   >
+                                   <span class="fa fa-cogs"></span>
+                                   <span>Components</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="components-links"
+                   >
+                                       <li class="link">
+                                           <a href="../components/AppComponent.html" >AppComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/AppTaskViewComponent.html" >AppTaskViewComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TaskLineComponent.html" >TaskLineComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TaskModalComponent.html" >TaskModalComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TasksOverviewComponent.html" >TasksOverviewComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/ToolbarComponent.html" >ToolbarComponent</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#classes-links"
+                   >
+                                   <span class="fa fa-file-code-o"></span>
+                                   <span>Classes</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="classes-links"
+                   >
+                                       <li class="link">
+                                           <a href="../classes/Element.html" >Element</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/FireflyFrontPage.html" >FireflyFrontPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Module.html" >Module</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Point.html" >Point</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/TaskMetadata.html" >TaskMetadata</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/TaskModalContext.html" >TaskModalContext</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/TaskOperation.html" >TaskOperation</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Type.html" >Type</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#injectables-links"
+                   >
+                                   <span class="fa fa-long-arrow-down"></span>
+                                   <span>Injectables</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="injectables-links"
+                   >
+                                       <li class="link">
+                                           <a href="../injectables/ModuleService.html" >ModuleService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/TaskService.html" >TaskService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/ToolbarButtonService.html" >ToolbarButtonService</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                   
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#pipes-links"
+                   >
+                                   <span class="fa fa-plus"></span>
+                                   <span>Pipes</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="pipes-links"
+                   >
+                                       <li class="link">
+                                           <a href="../pipes/CapitalizePipe.html" >CapitalizePipe</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#miscellaneous-links"
+                   >
+                                   <span class="fa fa-cubes"></span>
+                                   <span>Miscellaneous</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="miscellaneous-links"
+                   >
+                                       <li class="link">
+                                         <a href="../miscellaneous/enumerations.html" data-type="entity-link" >Enums</a>
+                                       </li>
+                                       <li class="link">
+                                         <a href="../miscellaneous/variables.html" data-type="entity-link" >Variables</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                           <li class="copyright">
+                                   Documentation generated using <a href="https://compodoc.github.io/website/" target="_blank">
+                                               <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                                   </a>
+                           </li>
+                   
+                       </ul>
+                   
+                   </nav>
+               </div>
+               <div class="content module">
+                   <div class="content-data">
+
+
+
+<ol class="breadcrumb">
+  <li>Modules</li>
+  <li>TasksOverviewModule</li>
+</ol>
+
+      <div class="text-center module-graph-container">
+          <div id="module-graph-svg">
+              <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: dependencies Pages: 1 -->
+<svg width="789pt" height="349pt"
+ viewBox="0.00 0.00 789.00 349.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 345)">
+<title>dependencies</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-345 785,-345 785,4 -4,4"/>
+<text text-anchor="start" x="369.5091" y="-42.4" font-family="sans-serif" font-weight="bold" font-size="14.00" fill="#000000">Legend</text>
+<polygon fill="#ffffb3" stroke="transparent" points="156.5,-10 156.5,-30 176.5,-30 176.5,-10 156.5,-10"/>
+<text text-anchor="start" x="180.129" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Declarations</text>
+<polygon fill="#8dd3c7" stroke="transparent" points="269.5,-10 269.5,-30 289.5,-30 289.5,-10 269.5,-10"/>
+<text text-anchor="start" x="293.2251" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Module</text>
+<polygon fill="#80b1d3" stroke="transparent" points="355.5,-10 355.5,-30 375.5,-30 375.5,-10 355.5,-10"/>
+<text text-anchor="start" x="379.2812" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Bootstrap</text>
+<polygon fill="#fdb462" stroke="transparent" points="452.5,-10 452.5,-30 472.5,-30 472.5,-10 452.5,-10"/>
+<text text-anchor="start" x="476.1732" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Providers</text>
+<polygon fill="#fb8072" stroke="transparent" points="548.5,-10 548.5,-30 568.5,-30 568.5,-10 548.5,-10"/>
+<text text-anchor="start" x="572.2258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
+<g id="clust1" class="cluster">
+<title>cluster_TasksOverviewModule</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="8,-70 8,-333 773,-333 773,-70 8,-70"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_TasksOverviewModule_declarations</title>
+<polygon fill="none" stroke="#000000" points="263,-143 263,-195 765,-195 765,-143 263,-143"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_TasksOverviewModule_TaskModalComponent_providers</title>
+<polygon fill="none" stroke="#000000" points="192,-78 192,-130 484,-130 484,-78 192,-78"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_TasksOverviewModule_imports</title>
+<polygon fill="none" stroke="#000000" points="16,-143 16,-195 255,-195 255,-143 16,-143"/>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster_TasksOverviewModule_exports</title>
+<polygon fill="none" stroke="#000000" points="250,-273 250,-325 438,-325 438,-273 250,-273"/>
+</g>
+<!-- TasksOverviewComponent -->
+<g id="node1" class="node">
+<title>TasksOverviewComponent</title>
+<polygon fill="#ffffb3" stroke="#000000" points="756.6825,-187 587.3175,-187 587.3175,-151 756.6825,-151 756.6825,-187"/>
+<text text-anchor="middle" x="672" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TasksOverviewComponent</text>
+</g>
+<!-- TasksOverviewModule -->
+<g id="node4" class="node">
+<title>TasksOverviewModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="417.9003,-252 414.9003,-256 393.9003,-256 390.9003,-252 270.0997,-252 270.0997,-216 417.9003,-216 417.9003,-252"/>
+<text text-anchor="middle" x="344" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TasksOverviewModule</text>
+</g>
+<!-- TasksOverviewComponent&#45;&gt;TasksOverviewModule -->
+<g id="edge1" class="edge">
+<title>TasksOverviewComponent&#45;&gt;TasksOverviewModule</title>
+<path fill="none" stroke="#000000" d="M672,-187.2843C672,-208.3211 672,-240 672,-240 672,-240 428.0186,-240 428.0186,-240"/>
+<polygon fill="#000000" stroke="#000000" points="428.0186,-236.5001 418.0186,-240 428.0185,-243.5001 428.0186,-236.5001"/>
+</g>
+<!-- TaskLineComponent -->
+<g id="node2" class="node">
+<title>TaskLineComponent</title>
+<polygon fill="#ffffb3" stroke="#000000" points="569.2022,-187 434.7978,-187 434.7978,-151 569.2022,-151 569.2022,-187"/>
+<text text-anchor="middle" x="502" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TaskLineComponent</text>
+</g>
+<!-- TaskLineComponent&#45;&gt;TasksOverviewModule -->
+<g id="edge2" class="edge">
+<title>TaskLineComponent&#45;&gt;TasksOverviewModule</title>
+<path fill="none" stroke="#000000" d="M502,-187.0225C502,-204.3734 502,-228 502,-228 502,-228 427.9113,-228 427.9113,-228"/>
+<polygon fill="#000000" stroke="#000000" points="427.9114,-224.5001 417.9113,-228 427.9113,-231.5001 427.9114,-224.5001"/>
+</g>
+<!-- TaskModalComponent -->
+<g id="node3" class="node">
+<title>TaskModalComponent</title>
+<polygon fill="#ffffb3" stroke="#000000" points="416.594,-187 271.406,-187 271.406,-151 416.594,-151 416.594,-187"/>
+<text text-anchor="middle" x="344" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TaskModalComponent</text>
+</g>
+<!-- TaskModalComponent&#45;&gt;TasksOverviewModule -->
+<g id="edge3" class="edge">
+<title>TaskModalComponent&#45;&gt;TasksOverviewModule</title>
+<path fill="none" stroke="#000000" d="M344,-187.1061C344,-187.1061 344,-205.991 344,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="340.5001,-205.9909 344,-215.991 347.5001,-205.991 340.5001,-205.9909"/>
+</g>
+<!-- TasksOverviewComponent  -->
+<g id="node9" class="node">
+<title>TasksOverviewComponent </title>
+<polygon fill="#fb8072" stroke="#000000" points="430.1827,-317 257.8173,-317 257.8173,-281 430.1827,-281 430.1827,-317"/>
+<text text-anchor="middle" x="344" y="-294.8" font-family="Times,serif" font-size="14.00" fill="#000000">TasksOverviewComponent </text>
+</g>
+<!-- TasksOverviewModule&#45;&gt;TasksOverviewComponent  -->
+<g id="edge8" class="edge">
+<title>TasksOverviewModule&#45;&gt;TasksOverviewComponent </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M344,-252.1061C344,-252.1061 344,-270.991 344,-270.991"/>
+<polygon fill="#000000" stroke="#000000" points="340.5001,-270.9909 344,-280.991 347.5001,-270.991 340.5001,-270.9909"/>
+</g>
+<!-- TaskService -->
+<g id="node5" class="node">
+<title>TaskService</title>
+<ellipse fill="#fdb462" stroke="#000000" cx="417" cy="-104" rx="58.5251" ry="18"/>
+<text text-anchor="middle" x="417" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TaskService</text>
+</g>
+<!-- TaskService&#45;&gt;TaskModalComponent -->
+<g id="edge4" class="edge">
+<title>TaskService&#45;&gt;TaskModalComponent</title>
+<path fill="none" stroke="#000000" d="M387.3925,-119.7347C387.3925,-119.7347 387.3925,-140.6451 387.3925,-140.6451"/>
+<polygon fill="#000000" stroke="#000000" points="383.8926,-140.645 387.3925,-150.6451 390.8926,-140.6451 383.8926,-140.645"/>
+</g>
+<!-- ModuleService -->
+<g id="node6" class="node">
+<title>ModuleService</title>
+<ellipse fill="#fdb462" stroke="#000000" cx="270" cy="-104" rx="70.0635" ry="18"/>
+<text text-anchor="middle" x="270" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ModuleService</text>
+</g>
+<!-- ModuleService&#45;&gt;TaskModalComponent -->
+<g id="edge5" class="edge">
+<title>ModuleService&#45;&gt;TaskModalComponent</title>
+<path fill="none" stroke="#000000" d="M305.7424,-119.7347C305.7424,-119.7347 305.7424,-140.6451 305.7424,-140.6451"/>
+<polygon fill="#000000" stroke="#000000" points="302.2425,-140.645 305.7424,-150.6451 309.2425,-140.6451 302.2425,-140.645"/>
+</g>
+<!-- ApiFireflyModule -->
+<g id="node7" class="node">
+<title>ApiFireflyModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="247.1471,-187 244.1471,-191 223.1471,-191 220.1471,-187 128.8529,-187 128.8529,-151 247.1471,-151 247.1471,-187"/>
+<text text-anchor="middle" x="188" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">ApiFireflyModule</text>
+</g>
+<!-- ApiFireflyModule&#45;&gt;TasksOverviewModule -->
+<g id="edge6" class="edge">
+<title>ApiFireflyModule&#45;&gt;TasksOverviewModule</title>
+<path fill="none" stroke="#000000" d="M188,-187.0225C188,-204.3734 188,-228 188,-228 188,-228 260.1116,-228 260.1116,-228"/>
+<polygon fill="#000000" stroke="#000000" points="260.1116,-231.5001 270.1116,-228 260.1116,-224.5001 260.1116,-231.5001"/>
+</g>
+<!-- UtilsModule -->
+<g id="node8" class="node">
+<title>UtilsModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="110.2731,-187 107.2731,-191 86.2731,-191 83.2731,-187 23.7269,-187 23.7269,-151 110.2731,-151 110.2731,-187"/>
+<text text-anchor="middle" x="67" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">UtilsModule</text>
+</g>
+<!-- UtilsModule&#45;&gt;TasksOverviewModule -->
+<g id="edge7" class="edge">
+<title>UtilsModule&#45;&gt;TasksOverviewModule</title>
+<path fill="none" stroke="#000000" d="M67,-187.2843C67,-208.3211 67,-240 67,-240 67,-240 260.133,-240 260.133,-240"/>
+<polygon fill="#000000" stroke="#000000" points="260.133,-243.5001 270.133,-240 260.1329,-236.5001 260.133,-243.5001"/>
+</g>
+</g>
+</svg>
+
+          </div>
+          <i id="fullscreen" class="fa fa-expand module-graph-fullscreen-btn" aria-hidden="true"></i>
+          <div class="btn-group">
+              <button id="zoom-in" class="btn btn-default btn-sm">Zoom in</button>
+              <button id="reset" class="btn btn-default btn-sm">Reset</button>
+              <button id="zoom-out" class="btn btn-default btn-sm">Zoom out</button>
+          </div>
+      </div>
+      <script src="../js/libs/svg-pan-zoom.min.js"></script>
+      <script src="../js/svg-pan-zoom.controls.js"></script>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+        <a href="#info" id="info-tab" role="tab" data-toggle="tab" data-link="info">Info</a>
+    </li>
+
+
+    <li>
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/tasks-overview/tasks-overview.module.ts</code>
+        </p>
+
+
+        <div class="container-fluid module">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Declarations<a href="https://angular.io/api/core/NgModule#declarations" target="_blank" title="Official documentation about module declarations"><span class="fa fa-info-circle"></span></a></h3>
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="../components/TasksOverviewComponent.html">TasksOverviewComponent</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="../components/TaskLineComponent.html">TaskLineComponent</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="../components/TaskModalComponent.html">TaskModalComponent</a>
+                            </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>EntryComponents<a href="https://angular.io/api/core/NgModule#entryComponents" target="_blank" title="Official documentation about module entryComponents"><span class="fa fa-info-circle"></span></a></h3>
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="../components/TaskModalComponent.html">TaskModalComponent</a>
+                            </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" title="Official documentation about module imports"><span class="fa fa-info-circle"></a></h3>
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                    <a href="../modules/ApiFireflyModule.html" >ApiFireflyModule</a>
+                            </li>
+                            <li class="list-group-item">
+                                    <a href="../modules/UtilsModule.html" >UtilsModule</a>
+                            </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Exports<a href="https://angular.io/api/core/NgModule#exports" target="_blank" title="Official documentation about module exports"><span class="fa fa-info-circle"></a></h3>
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                    <a href="../components/TasksOverviewComponent.html" >TasksOverviewComponent</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tab-pane fade tab-source-code" id="c-source">
+        <pre class="line-numbers"><code class="language-typescript">import {NgModule} from &#x27;@angular/core&#x27;;
+import {CommonModule} from &#x27;@angular/common&#x27;;
+import {ApiFireflyModule} from &#x27;app/api-firefly/api-firefly.module&#x27;;
+import {TasksOverviewComponent} from &#x27;./tasks-overview.component&#x27;;
+import {ModalModule} from &#x27;angular2-modal/esm&#x27;;
+import {BootstrapModalModule} from &#x27;angular2-modal/plugins/bootstrap&#x27;;
+import {TaskLineComponent} from &#x27;./task-line.component&#x27;;
+import {UtilsModule} from &#x27;../utils/utils.module&#x27;;
+import {TaskModalComponent} from &#x27;./task-modal.component&#x27;;
+import {FormsModule} from &#x27;@angular/forms&#x27;;
+
+@NgModule({
+    imports: [
+        CommonModule,
+        ApiFireflyModule,
+        ModalModule,
+        BootstrapModalModule,
+        UtilsModule,
+        FormsModule
+    ],
+    declarations: [TasksOverviewComponent, TaskLineComponent, TaskModalComponent],
+    exports: [TasksOverviewComponent],
+    entryComponents: [TaskModalComponent]
+})
+export class TasksOverviewModule {
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+           </div>
+       </div>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script>var COMPODOC_CURRENT_PAGE_DEPTH = 1;</script>
+
+       <script src="../js/search/search.js"></script>
+       <script src="../js/search/lunr.min.js"></script>
+       <script src="../js/search/search-lunr.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+       <script src="../js/search/search_index.js"></script>
+
+    </body>
+</html>
