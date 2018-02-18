@@ -39,7 +39,7 @@ export class TaskService {
     private taskLastOperations: Map<string, number> = new Map();
 
     private static extractData(res: Response) {
-        return res.json() || {};
+        return res.json() || [];
     }
 
     public static handleError(error: Response | any) {
@@ -63,8 +63,8 @@ export class TaskService {
     updateTasks() {
         const that = this;
         return this.http.get(TaskService.TASKS_URL)
-            .map((data: Response) => data.json() || {})
-            .do((data) => {
+            .map((data: Response) => data.json() || [])
+            .map((data) => {
                 // Create Operations subject for each task if necessary, with its associated last operation
                 for (const elem of data) {
                     const task = elem as TaskMetadata;
@@ -109,6 +109,12 @@ export class TaskService {
             .catch(TaskService.handleError);
     }
 
+    flushTasks() {
+        return this.http.delete(TaskService.TASKS_URL)
+            .map(() => this.tasks$.next([]))
+            .catch(TaskService.handleError);
+    }
+
     fetchOperations(taskId: string) {
         const currentTaskOperationsById$ = this.taskOperationsById$;
         const currentTaskLastOperations = this.taskLastOperations;
@@ -119,7 +125,7 @@ export class TaskService {
 
         // Do the GET
         return this.http.get(url)
-            .map((data: Response) => data.json() || {})
+            .map((data: Response) => data.json() || [])
             .do((data) => {
                 // Update the new last operation index
                 currentTaskLastOperations.set(taskId, data.lastOperationIndex as number);

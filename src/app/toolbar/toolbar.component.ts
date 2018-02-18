@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {ToolbarButtonService} from './toolbar-button.service';
+import {TaskService} from "app/api-firefly/task.service";
 
 @Component({
     selector: 'app-toolbar',
@@ -9,7 +10,7 @@ import {ToolbarButtonService} from './toolbar-button.service';
 export class ToolbarComponent {
     fullTitleImagePath: string;
 
-    constructor(private _buttonService: ToolbarButtonService) {
+    constructor(private _buttonService: ToolbarButtonService, private taskService: TaskService) {
         this.fullTitleImagePath = 'assets/images/firefly_title.png';
     }
 
@@ -19,5 +20,9 @@ export class ToolbarComponent {
 
     onClickToggleView() {
         this._buttonService.toggleView();
+    }
+
+    onClickFlushTasks() {
+        this.taskService.flushTasks().subscribe();
     }
 }
