@@ -1,0 +1,35 @@
+@startuml
+skinparam componentStyle uml2
+
+cloud {
+  [Server] as S
+}
+
+package "Web" {
+  [App Module] as A
+  [TasksOverview Module] as TO
+  
+  [Toolbar Module] as TB
+  package "Services" {
+    [ApiFirefly Module] as AF
+  }
+
+  [TaskView Module] <<<color #red>**taskId**</color>>> as TV
+
+}
+
+AF --> S
+S --> AF 
+
+A <-[#green]- TO: <color #green>onSelect(<color #red>**taskId**<color #green>)\n<color #green>**Output**
+A -[#purple]-> TV: <color #red>**taskId**\n<color #purple>**Input**
+TO -[#orangered]-> AF: <color #orangered>GET /tasks \n <color #orangered>(each sec) \n <color #orangered>**trigger**
+AF -[#blue]-> TO: <color #blue>tasks$</color> \n <color #blue>**subscribe**
+TV -[#orangered]-> AF: <color #orangered>POST /tasks/<color #red>**taskId**<color #orangered>/run \n <color #orangered>(on run) \n <color #orangered>**trigger**
+TV -[#orangered]-> AF: <color #orangered>GET /tasks/<color #red>**taskId**<color #orangered>/operations \n <color #orangered>(each sec) \n <color #orangered>**trigger**
+AF -[#blue]-> TV: <color #blue>tasks$[<color #red>**taskId**<color #blue>] \n <color #blue>tasksOperations$[<color #red>**taskId**<color #blue>] \n <color #blue>**subscribe**
+
+TO <-[#blue]- TB: <color #blue>view$ \n <color #blue>**subscribe**
+TB -[#orangered]-> AF: <color #orangered>POST /tasks \n <color #orangered>(on creation) \n <color #orangered>**trigger**
+TB -[#orangered]-> AF: <color #orangered>DELETE /tasks \n <color #orangered>(on flush) \n <color #orangered>**trigger**
+@enduml
