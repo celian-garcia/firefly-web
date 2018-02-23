@@ -5,8 +5,7 @@
 
 
 # Firefly Web
-A client solution for the [firefly API](https://github.com/celian-garcia/firefly-api)
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
+A web client solution for the [firefly API](https://github.com/celian-garcia/firefly-api)
 
 # Events
 ![PlantUML events](http://www.plantuml.com/plantuml/png/3SlB3OD030N0Lf82MD_fnZWFiEHTa3yWkYTpdwyEiVgXt3vxvXapaVFTDiszbWgu72CniidHIM3AOzhOHPbMTQpsJ3SMwXm99uv01k7wZsXdTNi1)
