@@ -4,8 +4,8 @@
 
 
 
-# FireflyFront
-
+# Firefly Web
+A client solution for the [firefly API](https://github.com/celian-garcia/firefly-api)
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
 # Events
