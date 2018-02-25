@@ -13,7 +13,8 @@ services:
     volumes:
       - /dev/shm:/dev/shm
     environment:
-      HUB_HOST: localhost
+      HUB_PORT_4444_TCP_ADDR: localhost
+      HUB_PORT_4444_TCP_PORT: 4444
       DISPLAY: :1
       NODE_PORT: 5555
     network_mode: "host"
