@@ -1,13 +1,13 @@
 version: '3'
 services:
   selenium-hub:
-    image: selenium/hub
+    image: selenium/hub:3.7.1
     ports:
     - 4444:4444
     network_mode: "host"
 
   chrome:
-    image: selenium/node-chrome-debug
+    image: selenium/node-chrome-debug:3.7.1
     depends_on:
       - selenium-hub
     volumes:
@@ -15,11 +15,10 @@ services:
     environment:
       HUB_HOST: localhost
       DISPLAY: :1
-#      SE_OPTS: -debug -avoidProxy
     network_mode: "host"
 
   firefox:
-    image: selenium/node-firefox-debug
+    image: selenium/node-firefox-debug:3.7.1
     environment:
       HUB_PORT_4444_TCP_ADDR: localhost
       HUB_PORT_4444_TCP_PORT: 4444
