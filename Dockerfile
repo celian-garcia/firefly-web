@@ -14,6 +14,6 @@ WORKDIR /ng-app
 COPY . .
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-RUN $(npm bin)/ng build
+RUN "$(npm bin)/ng build"
 
 CMD $(npm bin)/ng serve --proxy-config proxy.config.docker.json

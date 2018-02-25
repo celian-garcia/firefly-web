@@ -2,6 +2,7 @@
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
 const { SpecReporter } = require('jasmine-spec-reporter');
+const AllureReporter = require('jasmine-allure-reporter');
 
 exports.config = {
   allScriptsTimeout: 11000,
@@ -20,16 +21,13 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     print: function() {}
   },
-  beforeLaunch: function() {
+  beforeLaunch() {
     require('ts-node').register({
       project: 'e2e/tsconfig.e2e.json'
     });
   },
-  onPrepare: function() {
-    jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
-    const AllureReporter = require('jasmine-allure-reporter');
-    jasmine.getEnv().addReporter(new AllureReporter({
-      resultsDir: 'allure-results'
-    }));
+  onPrepare() {
+    jasmine.getEnv().addReporter(new SpecReporter({spec: { displayStacktrace: true }}));
+    jasmine.getEnv().addReporter(new AllureReporter({resultsDir: 'allure-results'}));
   }
 };
