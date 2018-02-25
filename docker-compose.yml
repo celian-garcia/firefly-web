@@ -6,15 +6,13 @@ services:
     ports:
       - "8080:8080"
   firefly-api:
-    image: "celiangarcia/firefly:latest"
+    image: "celiangarcia/firefly-api:latest"
     container_name: firefly-api
     ports:
       - "9080:9080"
     command: /firefly/build/bin/FIREFLY_LAUNCHER 9080 /firefly/resources 5
   database:
-      image: postgres
-      volumes:
-          - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      image: "celiangarcia/firefly-database:latest"
       environment:
         - POSTGRES_PASSWORD=postgres
         - POSTGRES_DB=firefly_hive

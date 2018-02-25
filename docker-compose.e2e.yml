@@ -1,0 +1,48 @@
+version: '3'
+services:
+  selenium-hub:
+    image: selenium/hub
+    ports:
+    - 4444:4444
+    network_mode: "host"
+
+  chrome:
+    image: selenium/node-chrome
+    depends_on:
+      - selenium-hub
+    environment:
+      HUB_HOST: localhost
+    network_mode: "host"
+
+  firefox:
+    image: selenium/node-firefox
+    environment:
+      HUB_PORT_4444_TCP_ADDR: localhost
+      HUB_PORT_4444_TCP_PORT: 4444
+    depends_on:
+      - selenium-hub
+    network_mode: "host"
+
+#  firefly-web-e2e:
+#    build: .
+#    container_name: firefly-web-client
+#    command: npm run e2e
+#    depends_on:
+#      - firefly-api
+#    ports:
+#      - "8080:8080"
+
+  firefly-api:
+    image: "celiangarcia/firefly-api:0.7"
+    container_name: firefly-api
+    ports:
+      - "9080:9080"
+    command: /firefly/build/bin/FIREFLY_LAUNCHER 9080 /firefly/resources 5
+
+  database:
+      image: "celiangarcia/firefly-database:0.2.0"
+      environment:
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=firefly_hive
+      ports:
+        - "5400:5432"
