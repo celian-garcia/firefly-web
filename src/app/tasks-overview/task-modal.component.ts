@@ -1,15 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 
-import {DialogRef, ModalComponent, CloseGuard} from 'angular2-modal';
-import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
 import {TaskMetadata} from 'app/api-firefly/data/TaskMetadata';
 import {Module} from '../api-firefly/data/Module';
 import {Type} from '../api-firefly/data/Type';
 import {TaskService} from '../api-firefly/task.service';
 import {ModuleService} from 'app/api-firefly/module.service';
-
-export class TaskModalContext extends BSModalContext {
-}
 
 @Component({
     selector: 'app-task-modal',
@@ -17,8 +12,7 @@ export class TaskModalContext extends BSModalContext {
     styleUrls: ['./task-modal.component.css'],
     templateUrl: './task-modal.component.html'
 })
-export class TaskModalComponent implements OnInit, CloseGuard, ModalComponent<TaskModalContext> {
-    context: TaskModalContext;
+export class TaskModalComponent implements OnInit {
     task: TaskMetadata;
     errorMessage: string;
     modules_list: Module[];
@@ -27,12 +21,10 @@ export class TaskModalComponent implements OnInit, CloseGuard, ModalComponent<Ta
         return true;
     }
 
-    constructor(public dialog: DialogRef<TaskModalContext>, private taskService: TaskService, private moduleService: ModuleService) {
-        this.context = dialog.context;
+    constructor(private taskService: TaskService, private moduleService: ModuleService) {
         this.task = new TaskMetadata();
         this.task.name = 'Default title';
         this.task.description = 'Default description';
-        dialog.setCloseGuard(this);
     }
 
     ngOnInit() {
@@ -51,7 +43,7 @@ export class TaskModalComponent implements OnInit, CloseGuard, ModalComponent<Ta
     }
 
     onCancel() {
-        this.dialog.close();
+
     }
 
     onCreateTask() {
@@ -61,11 +53,10 @@ export class TaskModalComponent implements OnInit, CloseGuard, ModalComponent<Ta
         this.taskService.createTask(this.task).subscribe(
             task => {
                 this.task = task;
-                this.dialog.close(this.task);
+
             },
             error => {
                 this.errorMessage = <any>error;
-                this.dialog.dismiss();
             }
         );
     }
