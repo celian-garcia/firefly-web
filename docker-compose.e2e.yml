@@ -23,7 +23,7 @@ services:
     environment:
       HUB_PORT_4444_TCP_ADDR: localhost
       HUB_PORT_4444_TCP_PORT: 4444
-      DISPLAY: :1
+      DISPLAY: :2
     depends_on:
       - selenium-hub
     volumes:
