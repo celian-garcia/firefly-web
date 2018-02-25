@@ -15,7 +15,7 @@ services:
     environment:
       HUB_HOST: localhost
       DISPLAY: :1
-      SE_OPTS: -debug -avoidProxy
+#      SE_OPTS: -debug -avoidProxy
     network_mode: "host"
 
   firefox:
