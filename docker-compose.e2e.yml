@@ -7,7 +7,7 @@ services:
     network_mode: "host"
 
   chrome:
-    image: selenium/node-chrome
+    image: selenium/node-chrome-debug
     depends_on:
       - selenium-hub
     volumes:
@@ -15,10 +15,11 @@ services:
     environment:
       HUB_HOST: localhost
       DISPLAY: :1
+      SE_OPTS: -debug -avoidProxy
     network_mode: "host"
 
   firefox:
-    image: selenium/node-firefox
+    image: selenium/node-firefox-debug
     environment:
       HUB_PORT_4444_TCP_ADDR: localhost
       HUB_PORT_4444_TCP_PORT: 4444
