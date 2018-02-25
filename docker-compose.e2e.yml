@@ -15,6 +15,7 @@ services:
     environment:
       HUB_HOST: localhost
       DISPLAY: :1
+      NODE_PORT: 5555
     network_mode: "host"
 
   firefox:
@@ -23,6 +24,7 @@ services:
       HUB_PORT_4444_TCP_ADDR: localhost
       HUB_PORT_4444_TCP_PORT: 4444
       DISPLAY: :2
+      NODE_PORT: 5556
     depends_on:
       - selenium-hub
     volumes:
