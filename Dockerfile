@@ -1,6 +1,6 @@
 ### STAGE 1: Build ###
 
-FROM node:9
+FROM node:9-alpine
 
 COPY package.json package-lock.json ./
 
