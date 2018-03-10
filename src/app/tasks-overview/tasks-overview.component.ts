@@ -1,10 +1,7 @@
 import {Component, OnInit, ViewContainerRef, EventEmitter, Output} from '@angular/core';
 import {TaskService} from '../api-firefly/task.service';
 import {TaskMetadata} from '../api-firefly/data/TaskMetadata';
-import {Modal} from 'angular2-modal/plugins/bootstrap/modal';
-import {overlayConfigFactory} from 'angular2-modal';
 import {TaskModalComponent} from './task-modal.component';
-import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
 import {ToolbarButtonService} from 'app/toolbar/toolbar-button.service';
 import {isNullOrUndefined} from 'util';
 
@@ -25,9 +22,8 @@ export class TasksOverviewComponent implements OnInit {
     view_name: string;
     currentTaskId: string;
 
-    constructor(vcRef: ViewContainerRef, public modal: Modal, private taskService: TaskService,
+    constructor(vcRef: ViewContainerRef, private taskService: TaskService,
                 private _toolbarButtonService: ToolbarButtonService ) {
-        this.modal.overlay.defaultViewContainer = vcRef;
     }
 
     /**
@@ -74,17 +70,6 @@ export class TasksOverviewComponent implements OnInit {
 
     private _openCreationModal() {
         console.log('Received task creation event');
-        this.modal.open(TaskModalComponent, overlayConfigFactory({num1: 2, num2: 3}, BSModalContext))
-            .then((dialog) => {
-                    dialog.result.then(result => {
-                        if (!isNullOrUndefined(result)) {
-                            this.tasks.push(result);
-                        }
-                    }).catch((err) => {
-                        alert(err);
-                    });
-                }
-            );
     }
 
     onClick(task: TaskMetadata) {

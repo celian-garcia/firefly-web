@@ -5,7 +5,7 @@ export class FireflyFrontPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getAppRoot() {
+    return element(by.css('app-root'));
   }
 }
