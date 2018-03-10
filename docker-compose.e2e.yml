@@ -38,7 +38,6 @@ services:
     ports:
       - "9080:9080"
     command: /firefly/build/bin/FIREFLY_LAUNCHER 9080 /firefly/resources 5
-    network_mode: "host"
 
   database:
       image: "celiangarcia/firefly-database:0.2.0"
@@ -47,4 +46,3 @@ services:
         - POSTGRES_DB=firefly_hive
       ports:
         - "5400:5432"
-      network_mode: "host"
