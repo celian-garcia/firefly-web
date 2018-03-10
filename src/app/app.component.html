@@ -1,5 +1,5 @@
 <app-toolbar></app-toolbar>
 <div id="main-container">
-    <app-tasks-overview (clickTask)="updateTask($event)"></app-tasks-overview>
+    <app-tasks-overview (updateTaskId)="updateTaskId($event)"></app-tasks-overview>
     <app-task-view *ngIf="taskSelected" [taskId]="taskId"></app-task-view>
 </div>
