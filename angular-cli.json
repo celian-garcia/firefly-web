@@ -1,4 +1,5 @@
 {
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
     "version": "0.0.0",
     "name": "firefly-front"
@@ -19,7 +20,11 @@
           "output": "./assets/"
         }
       ],
-      "index": "index.html"
+      "index": "index.html",
+      "styles": [
+        "styles.css"
+      ],
+      "scripts": []
     }
   ],
   "addons": [],
@@ -43,9 +48,6 @@
       "host": "0.0.0.0"
     }
   },
-  "scripts": [],
-  "styles": [],
-  "assets": "src/assets",
   "environments": {
     "source": "src/environments/environment.ts",
     "dev": "src/environments/environment.ts",

@@ -1,20 +1,15 @@
 version: '3'
 services:
-  firefly-web-client:
-    build: .
-    container_name: firefly-web-client
-    ports:
-      - "8080:8080"
   firefly-api:
-    image: "celiangarcia/firefly-api:latest"
+    image: "celiangarcia/firefly-api:0.7"
     container_name: firefly-api
     ports:
       - "9080:9080"
     command: /firefly/build/bin/FIREFLY_LAUNCHER 9080 /firefly/resources 5
   database:
-      image: "celiangarcia/firefly-database:latest"
-      environment:
-        - POSTGRES_PASSWORD=postgres
-        - POSTGRES_DB=firefly_hive
-      ports:
-        - "5400:5432"
+    image: "celiangarcia/firefly-database:0.2.0"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=firefly_hive
+    ports:
+      - "5400:5432"

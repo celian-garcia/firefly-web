@@ -1,9 +1,7 @@
 import {Component, OnInit, ViewContainerRef, EventEmitter, Output} from '@angular/core';
 import {TaskService} from '../api-firefly/task.service';
 import {TaskMetadata} from '../api-firefly/data/TaskMetadata';
-import {TaskModalComponent} from './task-modal.component';
 import {ToolbarButtonService} from 'app/toolbar/toolbar-button.service';
-import {isNullOrUndefined} from 'util';
 
 @Component({
     selector: 'app-tasks-overview',
@@ -35,7 +33,7 @@ export class TasksOverviewComponent implements OnInit {
             this.tasks = data;
         });
         this.refreshTasksList();
-        setInterval(() => this.refreshTasksList(), TasksOverviewComponent.REFRESH_TIME);
+        // setInterval(() => this.refreshTasksList(), TasksOverviewComponent.REFRESH_TIME);
         console.log('tasks-overview -- NgOnInit done');
     }
 

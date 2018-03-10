@@ -1,12 +1,13 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
-import {TasksOverviewModule} from './tasks-overview/tasks-overview.module';
 import {ToolbarModule} from 'app/toolbar/toolbar.module';
 import {AppTaskViewModule} from './app-task-view/app-task-view.module';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {TasksOverviewModule} from './tasks-overview/tasks-overview.module';
+import {FormsModule} from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
 
 @NgModule({
     declarations: [
@@ -24,3 +25,5 @@ import {AppTaskViewModule} from './app-task-view/app-task-view.module';
 })
 export class AppModule {
 }
+
+platformBrowserDynamic().bootstrapModule(AppModule);

@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Création d'un tâche</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Nom de la tâche">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Description de la tâche">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Sélection du module"
+                [(ngModel)]="this.data.module">
+      <mat-option *ngFor="let module of this.modules_list" [value]="module.id">
+        {{module.title}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="this.data.module !== undefined">
+    <mat-select placeholder="Sélection du processus"
+                [(ngModel)]="this.data.type">
+      <mat-option *ngFor="let type of getTypesFromModule(this.data.module)"
+                  [value]="type.id">
+        {{type.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Nom d'utilisateur">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button mat-button [mat-dialog-close]="this.data">Créer</button>
+</mat-dialog-actions>

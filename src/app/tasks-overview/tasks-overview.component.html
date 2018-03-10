@@ -1,4 +1,4 @@
-<ul [ngClass]="view_name">
+<ul id="task-overview-list" [ngClass]="view_name">
     <li [ngClass]="view_name" *ngFor="let task of tasks">
         <app-task-line (click)="onClick(task)" [task]="task" [view_name]="view_name"></app-task-line>
     </li>
