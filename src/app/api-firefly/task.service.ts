@@ -65,9 +65,11 @@ export class TaskService {
         return this.http.get(TaskService.TASKS_URL)
             .map((data: Response) => data.json() || [])
             .map((data) => {
+                const dataKeys = [];
                 // Create Operations subject for each task if necessary, with its associated last operation
                 for (const elem of data) {
                     const task = elem as TaskMetadata;
+                    dataKeys.push(task.id);
                     if (!that.taskOperationsById$.has(task.id)) {
                         // Task operations is initially an empty list
                         that.taskOperationsById$.set(task.id, new ReplaySubject<TaskOperation[]>());
@@ -84,9 +86,15 @@ export class TaskService {
 
                     if (!that.taskLastOperations.has(task.id)) {
                         that.taskLastOperations.set(task.id, 0);
-
                     }
                 }
+
+                // Filter each task that have been removed previously
+                Array.from(that.taskMetadataById$.entries()).filter(
+                    (item) => dataKeys.includes(item[0]));
+                Array.from(that.taskOperationsById$.entries()).filter(
+                    (item) => dataKeys.includes(item[0]));
+
                 return this.tasks$.next(data);
             })
             .catch(TaskService.handleError);
