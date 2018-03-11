@@ -32,9 +32,8 @@ export class TasksOverviewComponent implements OnInit {
      */
     ngOnInit() {
         console.log('tasks-overview -- NgOnInit');
-        // Subscribe to overview buttons (we do not need to subscribe to flush button because the effect will be
+        // Subscribe to overview buttons (we do not need to subscribe to flush or create buttons because the effect will be
         // received by TaskService.tasks$ subscription).
-        this._toolbarButtonService.subscribeCreateTask(_ => this._openCreationModal());
         this._toolbarButtonService.subscribeToggleView(view_id => this._setView(view_id));
 
         // Subscribe to tasks service
@@ -64,10 +63,6 @@ export class TasksOverviewComponent implements OnInit {
     private _setView(view_id: number) {
         console.log('Received toggle view event');
         this.view_name = TasksOverviewComponent.VIEWS_MAP[view_id];
-    }
-
-    private _openCreationModal() {
-        console.log('Received task creation event');
     }
 
     onClick(task: TaskMetadata) {

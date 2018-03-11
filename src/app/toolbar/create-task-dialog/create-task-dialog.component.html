@@ -1,11 +1,13 @@
-<h2 mat-dialog-title>Création d'un tâche</h2>
+<h2 mat-dialog-title>Création d'une tâche</h2>
 <mat-dialog-content>
   <mat-form-field>
-    <input matInput placeholder="Nom de la tâche">
+    <input matInput placeholder="Nom de la tâche"
+           [(ngModel)]="this.data.name">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Description de la tâche">
+    <input matInput placeholder="Description de la tâche"
+           [(ngModel)]="this.data.description">
   </mat-form-field>
 
   <mat-form-field>
