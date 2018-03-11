@@ -1,9 +1,7 @@
 import {Component, OnInit, ViewContainerRef, EventEmitter, Output} from '@angular/core';
 import {TaskService} from '../api-firefly/task.service';
 import {TaskMetadata} from '../api-firefly/data/TaskMetadata';
-import {TaskModalComponent} from './task-modal.component';
 import {ToolbarButtonService} from 'app/toolbar/toolbar-button.service';
-import {isNullOrUndefined} from 'util';
 
 @Component({
     selector: 'app-tasks-overview',
@@ -34,9 +32,8 @@ export class TasksOverviewComponent implements OnInit {
      */
     ngOnInit() {
         console.log('tasks-overview -- NgOnInit');
-        // Subscribe to overview buttons (we do not need to subscribe to flush button because the effect will be
+        // Subscribe to overview buttons (we do not need to subscribe to flush or create buttons because the effect will be
         // received by TaskService.tasks$ subscription).
-        this._toolbarButtonService.subscribeCreateTask(_ => this._openCreationModal());
         this._toolbarButtonService.subscribeToggleView(view_id => this._setView(view_id));
 
         // Subscribe to tasks service
@@ -52,7 +49,7 @@ export class TasksOverviewComponent implements OnInit {
 
         // Refresh the tasks list at the beginning and also regularly
         this.refreshTasksList();
-        setInterval(() => this.refreshTasksList(), TasksOverviewComponent.REFRESH_TIME);
+        // setInterval(() => this.refreshTasksList(), TasksOverviewComponent.REFRESH_TIME);
         console.log('tasks-overview -- NgOnInit done');
     }
 
@@ -66,10 +63,6 @@ export class TasksOverviewComponent implements OnInit {
     private _setView(view_id: number) {
         console.log('Received toggle view event');
         this.view_name = TasksOverviewComponent.VIEWS_MAP[view_id];
-    }
-
-    private _openCreationModal() {
-        console.log('Received task creation event');
     }
 
     onClick(task: TaskMetadata) {

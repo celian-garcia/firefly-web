@@ -105,6 +105,7 @@ export class TaskService {
         const options = new RequestOptions({headers: headers});
         return this.http.post(TaskService.TASKS_URL, JSON.stringify(task), options)
             .map(TaskService.extractData)
+            .do(_ => this.updateTasks().subscribe())
             .catch(TaskService.handleError);
     }
 
