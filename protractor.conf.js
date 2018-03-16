@@ -10,7 +10,7 @@ exports.config = {
     './e2e/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    'browserName': 'firefox'
+    'browserName': 'chrome'
   },
   directConnect: false,
   seleniumAddress: "http://localhost:4444/wd/hub",
@@ -29,5 +29,13 @@ exports.config = {
   onPrepare() {
     jasmine.getEnv().addReporter(new SpecReporter({spec: { displayStacktrace: true }}));
     jasmine.getEnv().addReporter(new AllureReporter({resultsDir: 'allure-results'}));
+    jasmine.getEnv().afterEach(function(done){
+      browser.takeScreenshot().then(function (png) {
+        allure.createAttachment('Screenshot', function () {
+          return new Buffer(png, 'base64')
+        }, 'image/png')();
+        done();
+      })
+    });
   }
 };
