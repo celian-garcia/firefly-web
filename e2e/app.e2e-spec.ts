@@ -1,10 +1,13 @@
 import {FireflyFrontPage} from './app.page';
 import {FireflyApi} from './app.api';
-import {browser, by, element, protractor} from 'protractor';
+import {browser, by, element} from 'protractor';
+import {HttpClient} from 'protractor-http-client/dist/http-client';
 
 describe('firefly-front App', () => {
   const page: FireflyFrontPage = new FireflyFrontPage();
-  const api: FireflyApi = new FireflyApi();
+  const httpClient = new HttpClient('http://localhost:8080/');
+  httpClient.failOnHttpError = true;
+  const api: FireflyApi = new FireflyApi(httpClient);
   browser.waitForAngularEnabled(false);
 
   // implicit and page load timeouts
@@ -32,10 +35,12 @@ describe('firefly-front App', () => {
     expect(element.all(by.css('mat-form-field mat-select[placeholder="Sélection du processus"]')).count()).toBe(0);
     element(by.css('mat-form-field mat-select[placeholder="Sélection du module"]')).click();
     element(by.css('mat-option:first-child')).click();
+    browser.sleep(500);
 
     expect(element.all(by.css('mat-form-field mat-select[placeholder="Sélection du processus"]')).count()).toBe(1);
     element(by.css('mat-form-field mat-select[placeholder="Sélection du processus"]')).click();
     element(by.css('mat-option:first-child')).click();
+    browser.sleep(500);
 
     element(by.css('mat-form-field input[placeholder="Nom d\'utilisateur"]')).sendKeys('Utilisateur de test');
 
@@ -53,6 +58,7 @@ describe('firefly-front App', () => {
 
     expect(page.getAllTasksFromOverview().count()).toBe(3);
     page.getFlushTaskButtonFromToolbar().click();
+    browser.sleep(500);
     expect(page.getAllTasksFromOverview().count()).toBe(0);
 
     expect(element.all(by.tagName('app-task-view')).count()).toBe(0);

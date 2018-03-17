@@ -1,46 +1,27 @@
-import {protractor} from 'protractor';
-const http = require('http');
-
-const FLUSH_OPTIONS = {
-  host: 'localhost',
-  port: 8080,
-  path: '/api/v1/tasks',
-  method: 'DELETE'
-};
-
-const CREATE_OPTIONS = {
-  host: 'localhost',
-  port: 8080,
-  path: '/api/v1/tasks',
-  method: 'POST'
-};
+import {HttpClient} from 'protractor-http-client';
+import {TaskMetadata} from '../src/app/api-firefly/data/TaskMetadata';
 
 export class FireflyApi {
 
-  static DUMB_TASK: {
-    name: 'Task test';
-    description: 'Lorem ipsum';
-    type: 0;
-    module: 0;
-    user_name: 'user_test';
-  };
+  static DUMB_TASK: TaskMetadata = <TaskMetadata>({
+    name: 'Task test',
+    description: 'Lorem ipsum',
+    type: 0,
+    module: 0,
+    user_name: 'user_test'
+  });
 
-  makeRequest(options: any) {
-    const deferred = protractor.promise.defer();
-    const req = http.request(options, () => {
-      deferred.fulfill();
-    });
-    req.end();
-    return deferred.promise;
+  http: HttpClient;
+
+  constructor(http: HttpClient) {
+    this.http = http;
   }
 
   flushTasks() {
-    return this.makeRequest(FLUSH_OPTIONS);
+    return this.http.delete('/api/v1/tasks');
   }
 
-  createTask(task) {
-    const options = CREATE_OPTIONS;
-    options['body'] = task;
-    return this.makeRequest(options);
+  createTask(task: any) {
+    return this.http.post('/api/v1/tasks', task);
   }
 }
