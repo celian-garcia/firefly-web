@@ -11,8 +11,8 @@
     "pree2e": "rm -rf allure-report",
     "poste2e": "allure generate allure-results --clean -o allure-report || true",
     "e2e": "ng e2e --proxy-config proxy.config.local.json --host localhost --port 8080",
-    "pree2e_dev": "pree2e",
-    "poste2e_dev": "poste2e",
+    "pree2e_dev": "npm run pree2e",
+    "poste2e_dev": "npm run poste2e",
     "e2e_dev": "ng e2e --proxy-config proxy.config.local.json --serve=false",
     "compodoc": "./node_modules/.bin/compodoc -p tsconfig.json --output docs"
   },
