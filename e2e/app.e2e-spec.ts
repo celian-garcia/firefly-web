@@ -1,10 +1,13 @@
 import {FireflyFrontPage} from './app.page';
 import {FireflyApi} from './app.api';
-import {browser, by, element, protractor} from 'protractor';
+import {browser, by, element} from 'protractor';
+import {HttpClient} from 'protractor-http-client/dist/http-client';
 
 describe('firefly-front App', () => {
-  let page: FireflyFrontPage;
-  let api: FireflyApi;
+  const page: FireflyFrontPage = new FireflyFrontPage();
+  const httpClient = new HttpClient('http://localhost:8080/');
+  httpClient.failOnHttpError = true;
+  const api: FireflyApi = new FireflyApi(httpClient);
   browser.waitForAngularEnabled(false);
 
   // implicit and page load timeouts
@@ -12,24 +15,15 @@ describe('firefly-front App', () => {
   browser.manage().timeouts().implicitlyWait(5000);
 
   beforeEach(() => {
-    page = new FireflyFrontPage();
-    api = new FireflyApi();
+    api.flushTasks();
   });
 
-  afterEach(done => {
-    api.flushTasks(done);
-  });
-
-  it('should display app-root tag name', () => {
-    page.navigateTo();
-    browser.sleep(5000);
-    expect(page.getAppRoot().getTagName()).toEqual('app-root');
+  afterEach(() => {
+    api.flushTasks();
   });
 
   it('should perform a task creation opening a dialog and validating', () => {
     page.navigateTo();
-    browser.sleep(5000);
-    expect(page.getAppRoot().getTagName()).toEqual('app-root');
 
     element(by.xpath('//button[span[text()="create task"]]')).click();
 
@@ -41,15 +35,32 @@ describe('firefly-front App', () => {
     expect(element.all(by.css('mat-form-field mat-select[placeholder="Sélection du processus"]')).count()).toBe(0);
     element(by.css('mat-form-field mat-select[placeholder="Sélection du module"]')).click();
     element(by.css('mat-option:first-child')).click();
+    browser.sleep(500);
 
     expect(element.all(by.css('mat-form-field mat-select[placeholder="Sélection du processus"]')).count()).toBe(1);
     element(by.css('mat-form-field mat-select[placeholder="Sélection du processus"]')).click();
     element(by.css('mat-option:first-child')).click();
+    browser.sleep(500);
 
     element(by.css('mat-form-field input[placeholder="Nom d\'utilisateur"]')).sendKeys('Utilisateur de test');
 
     element(by.css('mat-dialog-actions button:nth-child(2)')).click();
-    expect(element.all(by.tagName('app-task-line')).count()).toBe(1);
+    expect(page.getAllTasksFromOverview().count()).toBe(1);
 
+  });
+
+  it('should come back to overview when task is deleted', () => {
+    api.createTask(FireflyApi.DUMB_TASK);
+    api.createTask(FireflyApi.DUMB_TASK);
+    api.createTask(FireflyApi.DUMB_TASK);
+
+    page.navigateTo();
+
+    expect(page.getAllTasksFromOverview().count()).toBe(3);
+    page.getFlushTaskButtonFromToolbar().click();
+    browser.sleep(500);
+    expect(page.getAllTasksFromOverview().count()).toBe(0);
+
+    expect(element.all(by.tagName('app-task-view')).count()).toBe(0);
   });
 });
