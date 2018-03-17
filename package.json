@@ -9,8 +9,11 @@
     "test": "ng test",
     "lint": "ng lint",
     "pree2e": "rm -rf allure-report",
-    "e2e": "ng e2e --proxy-config proxy.config.local.json --serve=false",
     "poste2e": "allure generate allure-results --clean -o allure-report || true",
+    "e2e": "ng e2e --proxy-config proxy.config.local.json --host localhost --port 8080",
+    "pree2e_dev": "pree2e",
+    "poste2e_dev": "poste2e",
+    "e2e_dev": "ng e2e --proxy-config proxy.config.local.json --serve=false",
     "compodoc": "./node_modules/.bin/compodoc -p tsconfig.json --output docs"
   },
   "private": true,
