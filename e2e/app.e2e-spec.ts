@@ -72,6 +72,6 @@ describe('firefly-front App', () => {
     expect(page.getAllTasksFromOverview().count()).toBe(1);
     page.getAllTasksFromOverview().get(0).click();
     browser.sleep(500);
-    expect(page.getRunButtonFromTaskView().getCssValue('cursor')).toBe('not-allowed');
+    expect(page.getRunButtonFromTaskView().getAttribute('disabled')).toBeTruthy();
   });
 });
