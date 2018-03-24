@@ -11,6 +11,15 @@ export class FireflyApi {
     user_name: 'user_test'
   });
 
+  static RUNNING_TASK: TaskMetadata = <TaskMetadata>({
+    name: 'Task running',
+    description: 'Lorem ipsum',
+    type: 0,
+    module: 0,
+    user_name: 'user_test',
+    state: 1
+  });
+
   http: HttpClient;
 
   constructor(http: HttpClient) {

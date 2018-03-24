@@ -65,16 +65,14 @@ describe('firefly-front App', () => {
     expect(page.getAppTaskView().isPresent()).toBe(false);
   });
 
-  // it('should disable the run button when task is running', () => {
-  //   api.createTask(FireflyApi.DUMB_TASK);
-  //
-  //   page.navigateTo();
-  //
-  //   expect(page.getAllTasksFromOverview().count()).toBe(3);
-  //   page.getFlushTaskButtonFromToolbar().click();
-  //   browser.sleep(500);
-  //   expect(page.getAllTasksFromOverview().count()).toBe(0);
-  //
-  //   expect(element.all(by.tagName('app-task-view')).count()).toBe(0);
-  // });
+  it('should not be able to run a task twice ', () => {
+    api.createTask(FireflyApi.RUNNING_TASK);
+
+    page.navigateTo();
+
+    expect(page.getAllTasksFromOverview().count()).toBe(1);
+    page.getAllTasksFromOverview().get(0).click();
+    browser.sleep(500);
+    expect(page.getRunButtonFromTaskView().getAttribute('disabled')).toBeTruthy();
+  });
 });
