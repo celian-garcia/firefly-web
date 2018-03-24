@@ -1,5 +1,11 @@
 <app-toolbar></app-toolbar>
-<div id="main-container">
-    <app-tasks-overview (updateTaskId)="updateTaskId($event)"></app-tasks-overview>
-    <app-task-view *ngIf="taskSelected" [taskId]="taskId"></app-task-view>
-</div>
+<split id="main-container" direction="horizontal">
+    <split-area class="side-flex" [size]="30">
+        <app-tasks-overview class="side-flex-element" (updateTaskId)="updateTaskId($event)"></app-tasks-overview>
+        <button class="side-flex-element side-shrink-grow-btn"></button>
+    </split-area>
+    <split-area class="side-flex" *ngIf="taskSelected" [size]="70">
+        <button class="side-flex-element side-shrink-grow-btn"></button>
+        <app-task-view class="side-flex-element" [taskId]="taskId"></app-task-view>
+    </split-area>
+</split>
