@@ -39,7 +39,7 @@ export class TasksOverviewComponent implements OnInit {
         // Subscribe to tasks service
         this.taskService.tasks$.subscribe(data => {
             // Check if the current task has been removed since the last tasks update
-            const currentTask: TaskMetadata = this.tasks.find(tm => tm.id === this.currentTaskId);
+            const currentTask: TaskMetadata = data.find(tm => tm.id === this.currentTaskId);
             if (currentTask === undefined) {
                 this.updateTaskId.next(undefined);
             }
