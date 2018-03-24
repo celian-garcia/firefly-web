@@ -21,6 +21,10 @@ export class FireflyFrontPage {
   }
 
   getCreateTaskButtonFromToolbar() {
-    return element(by.xpath('//button[span[text()="flush tasks"]]'));
+    return element(by.xpath('//button[span[text()="create task"]]'));
+  }
+
+  getRunButtonFromTaskView() {
+    return element(by.xpath('//button[text()="Run"]'));
   }
 }
