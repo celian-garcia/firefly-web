@@ -57,11 +57,12 @@ describe('firefly-front App', () => {
     page.navigateTo();
 
     expect(page.getAllTasksFromOverview().count()).toBe(3);
+    page.getTaskLineByPositionFromOverview(1).click();
     page.getFlushTaskButtonFromToolbar().click();
     browser.sleep(500);
     expect(page.getAllTasksFromOverview().count()).toBe(0);
 
-    expect(element.all(by.tagName('app-task-view')).count()).toBe(0);
+    expect(page.getAppTaskView().isPresent()).toBe(false);
   });
 
   it('should not be able to run a task twice ', () => {
