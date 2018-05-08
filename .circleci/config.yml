@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:8.10.0
     environment:
       - IMAGE: "firefly-web"
-      - DOCKER_IMAGE: $DOCKER_USER/$IMAGE
+      - DOCKER_IMAGE: ${DOCKER_USER}/${IMAGE}
     steps:
 #      - run:
 #          name: Install Docker Compose
