@@ -1,11 +1,21 @@
 <app-toolbar></app-toolbar>
 <split id="main-container" direction="horizontal">
-    <split-area class="side-flex" [size]="30">
+    <split-area id="overview-area"
+                class="side-flex"
+                *ngIf="viewState <= 0"
+                [order]="0"
+                [size]="30">
         <app-tasks-overview class="side-flex-element" (updateTaskId)="updateTaskId($event)"></app-tasks-overview>
-        <button class="side-flex-element side-shrink-grow-btn"></button>
+        <button class="side-flex-element side-shrink-grow-btn"
+                *ngIf="taskSelected"
+                (click)="incrementView()"></button>
     </split-area>
-    <split-area class="side-flex" *ngIf="taskSelected" [size]="70">
-        <button class="side-flex-element side-shrink-grow-btn"></button>
+    <split-area id="taskview-area"
+                class="side-flex"
+                *ngIf="viewState >= 0"
+                [order]="1"
+                [size]="70">
+        <button class="side-flex-element side-shrink-grow-btn" (click)="decrementView()"></button>
         <app-task-view class="side-flex-element" [taskId]="taskId"></app-task-view>
     </split-area>
 </split>

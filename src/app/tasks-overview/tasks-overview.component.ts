@@ -2,6 +2,7 @@ import {Component, OnInit, ViewContainerRef, EventEmitter, Output} from '@angula
 import {TaskService} from '../api-firefly/task.service';
 import {TaskMetadata} from '../api-firefly/data/TaskMetadata';
 import {ToolbarButtonService} from 'app/toolbar/toolbar-button.service';
+import {isNullOrUndefined} from 'util';
 
 @Component({
     selector: 'app-tasks-overview',
@@ -40,7 +41,7 @@ export class TasksOverviewComponent implements OnInit {
         this.taskService.tasks$.subscribe(data => {
             // Check if the current task has been removed since the last tasks update
             const currentTask: TaskMetadata = data.find(tm => tm.id === this.currentTaskId);
-            if (currentTask === undefined) {
+            if (currentTask === undefined && !isNullOrUndefined(this.currentTaskId)) {
                 this.updateTaskId.next(undefined);
             }
             // Then update tasks

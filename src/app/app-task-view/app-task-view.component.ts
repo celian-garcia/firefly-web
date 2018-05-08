@@ -118,6 +118,7 @@ export class AppTaskViewComponent implements AfterViewInit, OnInit, OnDestroy {
 
         // Reinitialize subjects
         this.taskService.reinitializeOperations(this._taskId);
+        console.log(this._taskId);
         this.taskMetadataSubject = this.taskService.getTaskMetadataSubject(this._taskId);
         this.taskOperationsSubject = this.taskService.getOperationsSubject(this._taskId);
 
