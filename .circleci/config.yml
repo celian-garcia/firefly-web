@@ -1,8 +1,7 @@
 version: 2
 jobs:
   e2e:
-    docker: # run the steps with Docker
-      - image: circleci/node:8.10.0
+    machine: true
     environment:
       - IMAGE: "firefly-web"
     steps:
@@ -23,8 +22,7 @@ jobs:
 #          name: Execute end-to-end tests
 #          command: docker run -it --net="host" $DOCKER_IMAGE npm run e2e
   deploy:
-    docker: # run the steps with Docker
-      - image: circleci/node:8.10.0
+    machine: true
     environment:
       - IMAGE: "firefly-web"
     steps:
