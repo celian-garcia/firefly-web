@@ -8,20 +8,22 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {TasksOverviewModule} from './tasks-overview/tasks-overview.module';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
+import {AngularSplitModule} from 'angular-split';
 
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpModule,
-        TasksOverviewModule,
-        ToolbarModule,
-        AppTaskViewModule
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    TasksOverviewModule,
+    ToolbarModule,
+    AppTaskViewModule,
+    AngularSplitModule
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

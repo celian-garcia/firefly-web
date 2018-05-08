@@ -2,27 +2,37 @@
     color: darkgray;
 }
 
-app-toolbar {
-    position: fixed;
-    top: 0;
+:host {
+    display: block;
     width: 100%;
+    margin: 50px 0;
+}
+
+app-root {
+    height: 1000px;
+    display: block;
 }
 
 #main-container {
     margin-top: 70px;
+}
+
+.side-flex {
     display: flex;
+}
+.side-flex-element {
+    flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    width: 100%;
+}
+.side-shrink-grow-btn {
+    width: 10px;
 }
 
-app-tasks-overview {
-    flex: 1;
-    margin: 10px;
-}
-
-app-task-view {
-    flex: 4;
-    margin: 10px;
+app-toolbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .hidden {

@@ -35,4 +35,12 @@ export class FireflyFrontPage {
   getTaskLineByPositionFromOverview(number: number) {
     return element(by.css('#task-overview-list li:nth-child(' + number + ')'));
   }
+
+  getDisplayButtonFromOverview() {
+    return element(by.css('#overview-area .side-shrink-grow-btn'));
+  }
+
+  getDisplayButtonFromTaskView() {
+    return element(by.css('#taskview-area .side-shrink-grow-btn'));
+  }
 }

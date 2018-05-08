@@ -62,10 +62,10 @@ describe('firefly-front App', () => {
     browser.sleep(500);
     expect(page.getAllTasksFromOverview().count()).toBe(0);
 
-    expect(page.getAppTaskView().isPresent()).toBe(false);
+    expect(page.getAppTaskView().isPresent()).toBeFalsy();
   });
 
-  it('should not be able to run a task twice ', () => {
+  it('should not be able to run a task twice', () => {
     api.createTask(FireflyApi.RUNNING_TASK);
 
     page.navigateTo();
@@ -74,5 +74,43 @@ describe('firefly-front App', () => {
     page.getAllTasksFromOverview().get(0).click();
     browser.sleep(500);
     expect(page.getRunButtonFromTaskView().getAttribute('disabled')).toBeTruthy();
+  });
+
+  it('should display/hide tasks overview or task view', () => {
+    api.createTask(FireflyApi.DUMB_TASK);
+    api.createTask(FireflyApi.DUMB_TASK);
+    api.createTask(FireflyApi.DUMB_TASK);
+
+    page.navigateTo();
+
+    // At the start, no navigation button is diplayed because no task is selected
+    expect(page.getDisplayButtonFromOverview().isPresent()).toBeFalsy();
+    expect(page.getDisplayButtonFromTaskView().isPresent()).toBeFalsy();
+
+    // A click on a task should display both views
+    page.getAllTasksFromOverview().get(0).click();
+    expect(page.getDisplayButtonFromOverview().isPresent()).toBeTruthy();
+    expect(page.getDisplayButtonFromTaskView().isPresent()).toBeTruthy();
+
+    // A click on the overview button should hide overview
+    page.getDisplayButtonFromOverview().click();
+    expect(page.getDisplayButtonFromOverview().isPresent()).toBeFalsy();
+    expect(page.getDisplayButtonFromTaskView().isPresent()).toBeTruthy();
+
+    // A click on the task view button should display back the overview
+    page.getDisplayButtonFromTaskView().click();
+    expect(page.getDisplayButtonFromOverview().isPresent()).toBeTruthy();
+    expect(page.getDisplayButtonFromTaskView().isPresent()).toBeTruthy();
+
+    // A second click on the task view button should hide the task view
+    page.getDisplayButtonFromTaskView().click();
+    expect(page.getDisplayButtonFromOverview().isPresent()).toBeTruthy();
+    expect(page.getDisplayButtonFromTaskView().isPresent()).toBeFalsy();
+
+    // As a task has been selected now, a click on the overview button should display back the task view
+    page.getDisplayButtonFromOverview().click();
+    expect(page.getDisplayButtonFromOverview().isPresent()).toBeTruthy();
+    expect(page.getDisplayButtonFromTaskView().isPresent()).toBeTruthy();
+
   });
 });
