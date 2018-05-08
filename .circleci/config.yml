@@ -5,22 +5,22 @@ jobs:
     environment:
       - IMAGE: "firefly-web"
     steps:
-#      - run:
-#          name: Install Docker Compose
-#          command: |
-#            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-#            chmod +x ~/docker-compose
-#            sudo mv ~/docker-compose /usr/bin/docker-compose
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/bin/docker-compose
       - checkout
-#      - run:
-#          name: Prepare end-to-end tests
-#          command: docker-compose -f docker-compose.e2e.yml up -d
+      - run:
+          name: Prepare end-to-end tests
+          command: docker-compose -f docker-compose.e2e.yml up -d
       - run:
           name: Build app
           command: docker build -t $DOCKER_USER/$IMAGE:`node -p -e "require('./package.json').version"` .
-#      - run:
-#          name: Execute end-to-end tests
-#          command: docker run -it --net="host" $DOCKER_IMAGE npm run e2e
+      - run:
+          name: Execute end-to-end tests
+          command: docker run -it --net="host" $DOCKER_USER/$IMAGE:`node -p -e "require('./package.json').version"` npm run e2e
   deploy:
     machine: true
     environment:
