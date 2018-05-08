@@ -2,6 +2,9 @@ version: 2
 jobs:
   e2e:
     machine: true
+    environment:
+      - IMAGE: "firefly-web"
+      - DOCKER_IMAGE: "${DOCKER_USER}/${IMAGE}:latest"
     steps:
       - run:
           name: Install Docker Compose
@@ -15,13 +18,38 @@ jobs:
           command: docker-compose -f docker-compose.e2e.yml up -d
       - run:
           name: Build app
-          command: docker build -t celiangarcia/firefly-web:latest .
+          command: docker build -t $DOCKER_IMAGE .
       - run:
           name: Execute end-to-end tests
-          command: docker run -it --net="host" celiangarcia/firefly-web:latest npm run e2e
+          command: docker run -it --net="host" $DOCKER_IMAGE npm run e2e
+  deploy:
+    docker: # run the steps with Docker
+      - image: circleci/node:8.10.0
+    environment:
+      - IMAGE: "firefly-web"
+      - DOCKER_IMAGE: "${DOCKER_USER}/${IMAGE}"
+    steps:
+      - checkout
+      - run:
+          name: Log in to docker hub
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run:
+          name: Build image from Dockerfile
+          command: docker build -t $DOCKER_IMAGE:`node -p -e "require('./package.json').version"` .
+      - run:
+          name: Push image to docker hub
+          command: docker push $DOCKER_IMAGE:`node -p -e "require('./package.json').version"`
 
 workflows:
   version: 2
   all:
     jobs:
       - e2e
+      - deploy:
+          requires:
+            - e2e
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /.*/
