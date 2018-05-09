@@ -11,14 +11,9 @@ import {CreateTaskDialogComponent} from './create-task-dialog/create-task-dialog
     styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent {
-  fullTitleImagePath: string;
+  fullTitleImagePath = 'assets/images/firefly_title.png';
 
-  constructor(public dialog: MatDialog, private _buttonService: ToolbarButtonService, private taskService: TaskService) {
-      this.fullTitleImagePath = 'assets/images/firefly_title.png';
-  }
-
-  onClickCreateTask() {
-      this._buttonService.createTask();
+  constructor(public _dialog: MatDialog, private _buttonService: ToolbarButtonService, private _taskService: TaskService) {
   }
 
   onClickToggleView() {
@@ -26,18 +21,18 @@ export class ToolbarComponent {
   }
 
   onClickFlushTasks() {
-      this.taskService.flushTasks().subscribe();
+      this._taskService.flushTasks().subscribe();
   }
 
   openCreateTaskDialog(): void {
-    const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
+    const dialogRef = this._dialog.open(CreateTaskDialogComponent, {
       width: '250px',
       data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed with data: ' + result);
-      this.taskService.createTask(result).subscribe();
+      this._taskService.createTask(result).subscribe();
     });
   }
 }

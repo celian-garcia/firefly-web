@@ -5,7 +5,7 @@
                 *ngIf="viewState <= 0"
                 [order]="0"
                 [size]="30">
-        <app-tasks-overview class="side-flex-element" (updateTaskId)="updateTaskId($event)"></app-tasks-overview>
+        <app-tasks-overview class="side-flex-element" (select)="updateTaskId($event)"></app-tasks-overview>
         <button class="side-flex-element side-shrink-grow-btn"
                 *ngIf="taskSelected"
                 (click)="incrementView()"></button>

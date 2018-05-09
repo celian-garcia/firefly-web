@@ -43,8 +43,8 @@ export class AppTaskViewComponent implements AfterViewInit, OnInit, OnDestroy {
 
     task: TaskMetadata;
 
-    private taskOperationsSubject: ReplaySubject<TaskOperation[]> = null;
-    private taskMetadataSubject: BehaviorSubject<TaskMetadata> = null;
+    private _taskOperationsSubject: ReplaySubject<TaskOperation[]> = null;
+    private _taskMetadataSubject: BehaviorSubject<TaskMetadata> = null;
 
     states: { [key: string]: string; };
 
@@ -75,7 +75,7 @@ export class AppTaskViewComponent implements AfterViewInit, OnInit, OnDestroy {
         return scene;
     }
 
-    constructor(private taskService: TaskService) {
+    constructor(private _taskService: TaskService) {
         this.states = AppTaskViewComponent.STATES;
     }
 
@@ -89,7 +89,7 @@ export class AppTaskViewComponent implements AfterViewInit, OnInit, OnDestroy {
         const canvas = document.getElementById('babylon-canvas') as HTMLCanvasElement;
         if (!isNullOrUndefined(canvas) && !this._babylonIsRunning) {
             this.babylonInitialization(canvas);
-            this.taskOperationsSubject.subscribe(data => this.fillPoints(data));
+            this._taskOperationsSubject.subscribe(data => this.fillPoints(data));
             this._babylonIsRunning = true;
         }
     }
@@ -109,21 +109,21 @@ export class AppTaskViewComponent implements AfterViewInit, OnInit, OnDestroy {
 
     updateView() {
         // Empty observers of subject, without unsubscribe
-        if (!isNullOrUndefined(this.taskOperationsSubject)) {
-            this.taskOperationsSubject.observers = [];
+        if (!isNullOrUndefined(this._taskOperationsSubject)) {
+            this._taskOperationsSubject.observers = [];
         }
-        if (!isNullOrUndefined(this.taskMetadataSubject)) {
-            this.taskMetadataSubject.observers = [];
+        if (!isNullOrUndefined(this._taskMetadataSubject)) {
+            this._taskMetadataSubject.observers = [];
         }
 
         // Reinitialize subjects
-        this.taskService.reinitializeOperations(this._taskId);
+        this._taskService.reinitializeOperations(this._taskId);
         console.log(this._taskId);
-        this.taskMetadataSubject = this.taskService.getTaskMetadataSubject(this._taskId);
-        this.taskOperationsSubject = this.taskService.getOperationsSubject(this._taskId);
+        this._taskMetadataSubject = this._taskService.getTaskMetadataSubject(this._taskId);
+        this._taskOperationsSubject = this._taskService.getOperationsSubject(this._taskId);
 
         // Subscribe to metadata update
-        this.taskMetadataSubject.subscribe(data => this.task = data);
+        this._taskMetadataSubject.subscribe(data => this.task = data);
 
         // We want to make an init refresh if state is not init (0)
         this._refreshOperations = this.task.state !== 0;
@@ -187,15 +187,15 @@ export class AppTaskViewComponent implements AfterViewInit, OnInit, OnDestroy {
     private refreshData() {
 
         if (this._refreshOperations) {
-            this.taskService.fetchOperations(this._taskId).subscribe();
+            this._taskService.fetchOperations(this._taskId).subscribe();
         }
 
         // We refresh operations again only if state is running (1)
         this._refreshOperations = this.task.state === 1;
     }
 
-    private onClickRunTask() {
-        this.taskService.runTask(this._taskId)
+    public onClickRunTask() {
+        this._taskService.runTask(this._taskId)
             .subscribe(
                 resultOk => console.log(resultOk),
                 error => console.log(error));

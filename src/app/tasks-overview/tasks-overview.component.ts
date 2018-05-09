@@ -16,12 +16,12 @@ export class TasksOverviewComponent implements OnInit {
         1: 'card'
     };
 
-    @Output() updateTaskId: EventEmitter<string> = new EventEmitter();
+    @Output() select: EventEmitter<string> = new EventEmitter();
     tasks: TaskMetadata[] = [];
     view_name: string;
     currentTaskId: string;
 
-    constructor(vcRef: ViewContainerRef, private taskService: TaskService,
+    constructor(vcRef: ViewContainerRef, private _taskService: TaskService,
                 private _toolbarButtonService: ToolbarButtonService ) {
     }
 
@@ -35,14 +35,15 @@ export class TasksOverviewComponent implements OnInit {
         console.log('tasks-overview -- NgOnInit');
         // Subscribe to overview buttons (we do not need to subscribe to flush or create buttons because the effect will be
         // received by TaskService.tasks$ subscription).
-        this._toolbarButtonService.subscribeToggleView(view_id => this._setView(view_id));
+        this._toolbarButtonService.view$.subscribe(
+          view_id => this._setView(view_id));
 
         // Subscribe to tasks service
-        this.taskService.tasks$.subscribe(data => {
+        this._taskService.tasks$.subscribe(data => {
             // Check if the current task has been removed since the last tasks update
             const currentTask: TaskMetadata = data.find(tm => tm.id === this.currentTaskId);
             if (currentTask === undefined && !isNullOrUndefined(this.currentTaskId)) {
-                this.updateTaskId.next(undefined);
+                this.select.next(undefined);
             }
             // Then update tasks
             this.tasks = data;
@@ -58,7 +59,7 @@ export class TasksOverviewComponent implements OnInit {
      * Ask to the TaskService a task update
      */
     refreshTasksList() {
-        this.taskService.updateTasks().subscribe();
+        this._taskService.updateTasks().subscribe();
     }
 
     private _setView(view_id: number) {
@@ -68,7 +69,7 @@ export class TasksOverviewComponent implements OnInit {
 
     onClick(task: TaskMetadata) {
         this.currentTaskId = task.id;
-        this.updateTaskId.next(task.id);
+        this.select.next(task.id);
     }
 
 }
